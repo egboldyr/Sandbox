@@ -33,7 +33,15 @@ public class AccountDAOImpl implements AccountDAO {
 
     @Override
     public Long create(Account account) {
-        return null;
+        try {
+            log.info("Creating account... [LOGIN : " + account.getLogin() + "]");
+            Long accountId = (Long) factory.getCurrentSession().save(account);
+            log.info("Creating account SUCCESS. New account [ID : " + accountId + "]");
+            return accountId;
+        } catch (HibernateException exc) {
+            log.error("Creating account FAIL. [LOGIN : " + account.getLogin() + "]");
+            return null;
+        }
     }
 
     @Override

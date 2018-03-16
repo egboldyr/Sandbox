@@ -29,7 +29,11 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public void create(Account account) {
-
+        if (account == null) {
+            log.error("Account can't be NULL.");
+            return;
+        }
+        account.setId(dao.create(account));
     }
 
     @Override
