@@ -36,13 +36,15 @@ public class AuthorizationWebServiceImpl implements AuthorizationWebService {
     public Client authorization(String login, String password) {
         log.info("Start authorization service [authorization( LOGIN = " + login + " )]");
         Account account = accountService.getAccountByLogin(login);
-        log.info("Account received. Password check start...");
-        if (password != account.getPassword()) {
+        if (account != null) {
+            log.info("Account received. Password check start...");
+            if (password.equals(account.getPassword())) {
+                log.info("Password checked, authorization COMPLETE.");
+                return account.getClient();
+            }
             log.error("Password incorrect.");
-            return null;
         }
-        log.info("Password checked, authorization COMPLETE.");
-        return account.getClient();
+        return null;
     }
 
 }
