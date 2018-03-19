@@ -1,8 +1,25 @@
 <html>
     <head>
         <title>Requisition - WebClient</title>
+        <script>
+            #include("/templates/vm/js/lib/jquery-3.3.1.js");
+            #include("/templates/vm/js/index.js");
+        </script>
+        <style type="text/css">
+            #include("/templates/vm/css/index.css");
+        </style>
     </head>
-    <body>
 
+    <body>
+        <fieldset>
+            <legend>New Requisition - Form</legend>
+            <form class="" onsubmit="return createRequisition(event)">
+                <label>Name:   <br/><input class="text_field" type="text" id="name"><br/></label>
+                <label>Phone:  <br/><input class="text_field" type="text" id="phone"><br/></label>
+                <label>Email:  <br/><input class="text_field" type="text" id="email"><br/></label>
+                <label>Comment:<br/><input class="area_field" type="text" id="comment"><br/></label>
+                <input class="" type="submit" value="Create"">
+            </form>
+        </fieldset>
     </body>
 </html>
