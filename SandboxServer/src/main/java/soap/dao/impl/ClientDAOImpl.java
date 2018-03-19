@@ -10,6 +10,7 @@ import soap.dao.ClientDAO;
 import soap.entity.Client;
 
 import javax.annotation.PostConstruct;
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -20,6 +21,7 @@ import java.util.List;
  */
 
 @Repository
+@Transactional
 public class ClientDAOImpl implements ClientDAO {
 
     private Logger log;

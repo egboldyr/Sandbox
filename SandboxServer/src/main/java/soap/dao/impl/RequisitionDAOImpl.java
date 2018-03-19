@@ -10,6 +10,7 @@ import soap.dao.RequisitionDAO;
 import soap.entity.Requisition;
 
 import javax.annotation.PostConstruct;
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -17,6 +18,7 @@ import java.util.List;
  */
 
 @Repository
+@Transactional
 public class RequisitionDAOImpl implements RequisitionDAO {
 
     private Logger log;

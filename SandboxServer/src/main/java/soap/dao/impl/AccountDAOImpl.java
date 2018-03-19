@@ -10,6 +10,7 @@ import soap.dao.AccountDAO;
 import soap.entity.Account;
 
 import javax.annotation.PostConstruct;
+import javax.transaction.Transactional;
 
 /**
  * Created by EGBoldyr on 15.03.18.
@@ -19,6 +20,7 @@ import javax.annotation.PostConstruct;
  */
 
 @Repository
+@Transactional
 public class AccountDAOImpl implements AccountDAO {
 
     private Logger log;
