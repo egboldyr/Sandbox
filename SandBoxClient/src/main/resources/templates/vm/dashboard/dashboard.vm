@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title>Manager Workspace</title>
+        <script>
+            #include("/templates/vm/js/lib/jquery-3.3.1.js");
+            #include("/templates/vm/dashboard/js/creation.js");
+            #include("/templates/vm/dashboard/js/dashboard.js");
+        </script>
+        <style type="text/css">
+            #include("/templates/vm/dashboard/css/dashboard.css");
+        </style>
+    </head>
+    <body>
+        <div class="panel_div">
+            <fieldset>
+                <p><input class="option" type="button" value="Requistions" onclick="return checkRequisitions()"></p>
+            </fieldset>
+        </div>
+        <div class="workspace_div">
+            <fieldset>
+                <div id="workspace" class="workspace"></div>
+            </fieldset>
+        </div>
+    </body>
+</html>
