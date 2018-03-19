@@ -9,6 +9,7 @@ import soap.entity.Requisition;
 import soap.service.RequisitionService;
 
 import javax.annotation.PostConstruct;
+import java.util.List;
 
 /**
  * Created by EGBoldyr on 19.03.18.
@@ -43,6 +44,11 @@ public class RequisitionServiceImpl implements RequisitionService {
 
     @Override
     public Requisition[] findAll() {
-        return new Requisition[0];
+        List<Requisition> list = dao.findAll();
+        Requisition[] requisitions = new Requisition[list.size()];
+        for (int i = 0; i < requisitions.length; i++) {
+            requisitions[i] = list.get(i);
+        }
+        return requisitions;
     }
 }

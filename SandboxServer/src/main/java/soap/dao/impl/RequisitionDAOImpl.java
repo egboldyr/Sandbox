@@ -52,6 +52,15 @@ public class RequisitionDAOImpl implements RequisitionDAO {
 
     @Override
     public List<Requisition> findAll() {
-        return null;
+        try {
+            log.info("Receiving all requisitions...");
+            List<Requisition> requisitions =
+                    factory.getCurrentSession().createCriteria(Requisition.class).list();
+            log.info("Receiving all requisitions, COMPLETE.");
+            return requisitions;
+        } catch (HibernateException exc) {
+            log.info("Receiving all requisitions, FAIL.");
+            return null;
+        }
     }
 }
