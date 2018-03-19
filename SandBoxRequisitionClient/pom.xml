@@ -57,4 +57,28 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxws-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <wsdlUrls>
+                        <wsdlUrl>http://localhost:8585/services/requisitions?wsdl</wsdlUrl>
+                    </wsdlUrls>
+                    <packageName>web.jaxws</packageName>
+                    <sourceDestDir>${basedir}/src/main/java</sourceDestDir>
+                    <keep>true</keep>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
