@@ -15,7 +15,7 @@ import java.util.Date;
 @Entity
 @Table(name = "REQUISITIONS")
 @XmlRootElement(name = "requisition")
-@XmlType(propOrder = {"name", "phoneNumber", "email", "comment"})
+@XmlType(propOrder = {"id", "name", "phoneNumber", "email", "comment", "status", "creationDate"})
 public class Requisition {
 
     @Id
