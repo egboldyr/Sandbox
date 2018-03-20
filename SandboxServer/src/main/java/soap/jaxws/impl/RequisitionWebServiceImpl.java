@@ -32,8 +32,14 @@ public class RequisitionWebServiceImpl implements RequisitionWebService {
 
     @Override
     public boolean newRequisition(String name, String phone, String email, String comment) {
-        log.info("Starting requisition service...");
+        log.info("Starting requisition service... CREATE OPTION.");
         return service.create(name, phone, email, comment);
+    }
+
+    @Override
+    public boolean updateStatus(Long id, String status) {
+        log.info("Starting requisition service... UPDATE OPTION.");
+        return service.update(id, status);
     }
 
     @Override

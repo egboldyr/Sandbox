@@ -18,5 +18,8 @@ public interface RequisitionWebService {
     boolean newRequisition(String name, String phone, String email, String comment);
 
     @WebMethod
+    boolean updateStatus(Long id, String status);
+
+    @WebMethod
     Requisition[] allRequisitions();
 }
