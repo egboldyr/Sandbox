@@ -9,10 +9,112 @@ fieldset {
     background: #add8e6;
 }
 /****************************************************************************************************************/
+.form_view {
+    width: 35%;
+    margin: 5px;
+    padding: 15px;
+
+    float: left;
+
+    border: 3px solid #4169e1;
+    border-radius: 15px;
+}
+
+form.form_view p {
+    padding: 5px;
+
+    color: #ffffff;
+    background: #1e90ff;
+
+    border-radius: 10px;
+
+    font-family: "Times New Roman", serif;
+    font-size: 18px;
+}
+
+form.form_view label {
+    padding: 5px;
+
+    color: #ffffff;
+
+    border-radius: 10px;
+
+    font-family: "Times New Roman", serif;
+    font-size: 18px;
+}
+/****************************************************************************************************************/
+.form_client {
+    width: 58%;
+    margin: 5px 5px 5px 5px;
+    padding: 15px;
+
+    float: right;
+
+    border: 3px solid #4169e1;
+    border-radius: 15px;
+}
+
+.ns_left {
+    width: 48%;
+    float: left;
+}
+
+.ns_right {
+    width: 48%;
+    float: right;
+}
+
+.ns_bottom {
+    clear: both;
+}
+
+form.form_client p,
+form.form_client div.ns_left p,
+form.form_client div.ns_right p {
+    width: 100%;
+    padding: 5px 5px 5px 5px;
+
+    color: #ffffff;
+    background: #1e90ff;
+
+    border-radius: 10px;
+
+    font-family: "Times New Roman", serif;
+    font-size: 18px;
+}
+
+form.form_client input[type=text],
+form.form_client div.ns_left input[type=text],
+form.form_client div.ns_right input[type=text] {
+    width: 100%;
+    padding: 5px 5px 5px 5px;
+
+    border: 1px solid #4682b4;
+    border-radius: 10px;
+
+    font-family: "Times New Roman", serif;
+    font-size: 18px;
+}
+
+form.form_client input[type=button] {
+    width: 100%;
+    padding: 5px 5px 5px 5px;
+    margin: 3px 3px 3px 3px;
+
+    background: #228b22;
+    color: #ffffff;
+    border: 1px solid #006400;
+    border-radius: 10px;
+
+    font-family: "Times New Roman", serif;
+    font-size: 18px;
+}
+/****************************************************************************************************************/
 table {
     width: 100%;
     margin: 5px;
     padding: 15px;
+
     border: 3px solid #4169e1;
     border-radius: 15px;
 }
@@ -83,7 +185,7 @@ table tbody td {
 }
 
 .process {
-    width: 100%;
+    width: 95%;
     margin: 3px 3px 3px 3px;
 
     background-color: #006400;
