@@ -15,7 +15,7 @@ import java.util.Date;
 @Entity
 @Table(name = "CLIENTS")
 @XmlRootElement(name = "client")
-@XmlType(propOrder = {"id", "name", "surname", "dateOfBirth", "account"})
+@XmlType(propOrder = {"id", "name", "surname", "phone", "email", "account"})
 public class Client implements Serializable {
 
     @Id
@@ -29,18 +29,22 @@ public class Client implements Serializable {
     @Column
     private String surname;
 
-    @Temporal(TemporalType.DATE)
-    private Date dateOfBirth;
+    @Column
+    private String phone;
+
+    @Column
+    private String email;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Account account;
 
     public Client() {}
 
-    public Client(String name, String surname, Date dateOfBirth) {
+    public Client(String name, String surname, String phone, String email) {
         this.name = name;
         this.surname = surname;
-        this.dateOfBirth = dateOfBirth;
+        this.phone = phone;
+        this.email = email;
     }
 
     public Long getId() {
@@ -61,11 +65,17 @@ public class Client implements Serializable {
     public void setSurname(String surname) {
         this.surname = surname;
     }
-    public Date getDateOfBirth() {
-        return dateOfBirth;
+    public String getPhone() {
+        return phone;
     }
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+    public String getEmail() {
+        return email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
     }
     public Account getAccount() {
         return account;
@@ -80,7 +90,8 @@ public class Client implements Serializable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 }
