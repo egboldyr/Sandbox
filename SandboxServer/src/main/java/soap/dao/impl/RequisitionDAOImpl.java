@@ -46,8 +46,30 @@ public class RequisitionDAOImpl implements RequisitionDAO {
     }
 
     @Override
+    public Requisition read(Long id) {
+        try {
+            log.info("Reading requisition... [ID : " + id + "]");
+            Requisition requisition = factory.getCurrentSession().get(Requisition.class, id);
+            log.info("Reading requisition... SUCCESS.");
+            return requisition;
+        } catch (HibernateException exc) {
+            log.info("Reading requisition... FAIL. Incorrect [ID : " + id + "]");
+            return null;
+        }
+    }
+
+    @Override
     public boolean update(Requisition requisition) {
-        return false;
+        try {
+            log.info("Updating requisition status...");
+            factory.getCurrentSession().update(requisition);
+            log.info("Updating requisition SUCCESS.");
+            return true;
+        } catch (HibernateException exc) {
+            factory.getCurrentSession().getTransaction().rollback();
+            log.info("Updating requisition FAIL.");
+            return false;
+        }
     }
 
     @Override

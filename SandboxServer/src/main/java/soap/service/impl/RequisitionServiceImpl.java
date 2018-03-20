@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import soap.dao.RequisitionDAO;
 import soap.entity.Requisition;
+import soap.entity.enums.RequisitionStatus;
 import soap.service.RequisitionService;
 
 import javax.annotation.PostConstruct;
@@ -38,8 +39,17 @@ public class RequisitionServiceImpl implements RequisitionService {
     }
 
     @Override
-    public boolean update(Requisition requisition) {
-        return false;
+    public boolean update(Long id, String status) {
+        Requisition requisition = dao.read(id);
+        if (status.equals("PROCESS")) {
+            requisition.setStatus(RequisitionStatus.PROCESS);
+        } else if (status.equals("DONE")) {
+            requisition.setStatus(RequisitionStatus.DONE);
+        } else {
+            return false;
+        }
+        dao.update(requisition);
+        return true;
     }
 
     @Override

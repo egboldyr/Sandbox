@@ -12,6 +12,8 @@ public interface RequisitionDAO {
 
     Long create(Requisition requisition);
 
+    Requisition read(Long id);
+
     boolean update(Requisition requisition);
 
     List<Requisition> findAll();
