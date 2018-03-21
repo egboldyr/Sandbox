@@ -1,4 +1,4 @@
-package web.servlet.create;
+package web.servlet.actions;
 
 import web.jaxws.Client;
 import web.jaxws.ClientService;
