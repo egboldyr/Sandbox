@@ -14,6 +14,7 @@
         <div class="panel_div">
             <fieldset>
                 <p><input class="option" type="button" value="Requistions" onclick="return checkRequisitions()"></p>
+                <p><input class="option" type="button" value="Administration" onclick="return checkClients()"></p>
             </fieldset>
         </div>
         <div class="workspace_div">
