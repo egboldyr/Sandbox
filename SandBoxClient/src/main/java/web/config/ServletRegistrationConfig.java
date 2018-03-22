@@ -7,6 +7,7 @@ import web.servlet.actions.UpdateRequisitionServlet;
 import web.servlet.auth.AuthorizationServlet;
 import web.servlet.actions.NewClientCreateServlet;
 import web.servlet.get.FindAllRequisitionsServlet;
+import web.servlet.get.FindRequisitionsByPartServlet;
 import web.servlet.page.DashboardPageServlet;
 import web.servlet.page.IndexPageServlet;
 
@@ -48,6 +49,14 @@ public class ServletRegistrationConfig {
         ServletRegistrationBean bean = new ServletRegistrationBean();
         bean.setServlet(new FindAllRequisitionsServlet());
         bean.setUrlMappings(Arrays.asList("/all_requisitions"));
+        return bean;
+    }
+
+    @Bean
+    public ServletRegistrationBean servletPartRequisitions() {
+        ServletRegistrationBean bean = new ServletRegistrationBean();
+        bean.setServlet(new FindRequisitionsByPartServlet());
+        bean.setUrlMappings(Arrays.asList("/part_requisitions"));
         return bean;
     }
 
