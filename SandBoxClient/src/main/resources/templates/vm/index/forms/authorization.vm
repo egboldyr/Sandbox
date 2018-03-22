@@ -1,0 +1,8 @@
+<fieldset>
+    <legend>Authorization</legend>
+    <form onsubmit="return authorization(event)">
+        <p>Login:</p><input type="text" id="login"><br/>
+        <p>Password:</p><input type="password" id="password"><br/>
+        <input type="submit" value="Sign In"">
+    </form>
+</fieldset>

@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <title>Authorization</title>
+        <script>
+            #include("/templates/vm/js/lib/jquery-3.3.1.js");
+            #include("/templates/vm/index/js/index.js");
+        </script>
+        <style type="text/css">
+            #include("/templates/vm/index/css/index.css");
+        </style>
+    </head>
+    <body>
+        #parse("templates/vm/index/forms/authorization.vm")
+    </body>
+</html>
