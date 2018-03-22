@@ -21,5 +21,8 @@ public interface RequisitionWebService {
     boolean updateStatus(Long id, String status);
 
     @WebMethod
+    Requisition[] getRequisitions(Integer from, Integer count);
+
+    @WebMethod
     Requisition[] allRequisitions();
 }

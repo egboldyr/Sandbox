@@ -43,6 +43,12 @@ public class RequisitionWebServiceImpl implements RequisitionWebService {
     }
 
     @Override
+    public Requisition[] getRequisitions(Integer from, Integer count) {
+        log.info("Receiving " + count + " requisitions... START");
+        return service.getRequisitions(from, count);
+    }
+
+    @Override
     public Requisition[] allRequisitions() {
         log.info("Receiving all requisitions... START");
         return service.findAll();
