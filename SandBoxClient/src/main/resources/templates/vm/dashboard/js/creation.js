@@ -2,7 +2,11 @@ function createRequisitionTable() {
     jQuery('#workspace')
         .empty()
         .append('<table id="requisitions">')
+        .append('<div class="nav_pnl"><label>Amount</label><input id="amount" type="text">' +
+                                     '<input type="button" value="Prev" onclick="prevRequisitions()">' +
+                                     '<input type="button" value="Next" onclick="nextRequisitions()"></div>')
         .append('<div id="forms"></div>');
+    jQuery('#amount').val('10');
 
     jQuery('#requisitions')
         .append('<caption>Requisitions</caption>')
@@ -69,6 +73,9 @@ function processRequisition(btn) {
 function processRequisitions(jsonResult) {
     var result = jQuery.parseJSON(jsonResult);
     jQuery('#requisitions').append('<tbody id="tblBody"></tbody>');
+
+    jQuery('#tblBody').empty();
+
     for (var i = 0; i < result.length; i++) {
         jQuery('#tblBody').append('<tr id="cur_row'+ i +'"></tr>')
         jQuery('#cur_row' + i)

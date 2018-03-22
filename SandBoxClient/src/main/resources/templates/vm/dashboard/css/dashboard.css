@@ -9,6 +9,55 @@ fieldset {
     background: #add8e6;
 }
 /****************************************************************************************************************/
+.nav_pnl {
+    text-align: right;
+
+    border: 3px solid #4169e1;
+    border-radius: 15px;
+}
+
+div.nav_pnl label {
+    width: 15%;
+    margin: 5px 5px 5px 5px;
+    padding: 5px 5px 5px 5px;
+
+    color: #ffffff;
+    background: #1e90ff;
+
+    border-radius: 10px;
+
+    font-family: "Times New Roman", serif;
+    font-size: 18px;
+}
+
+div.nav_pnl input[type=text] {
+    width: 20%;
+    margin: 5px 5px 5px 5px;
+    padding: 5px 5px 5px 5px;
+
+    border: 1px solid #4682b4;
+    border-radius: 10px;
+
+    font-family: "Times New Roman", serif;
+    font-size: 18px;
+
+    text-align: right;
+}
+
+div.nav_pnl input[type=button] {
+    width: 10%;
+    margin: 5px 5px 5px 5px;
+    padding: 7px 7px 7px 7px;
+
+    color: #ffffff;
+    background: #1e90ff;
+    border: 1px solid #4169e1;
+    border-radius: 10px;
+
+    font-family: "Times New Roman", serif;
+    font-size: 18px;
+}
+/****************************************************************************************************************/
 .form_view {
     width: 35%;
     margin: 5px;
