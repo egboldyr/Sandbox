@@ -14,5 +14,7 @@ public interface RequisitionService {
 
     boolean update(Long id, String status);
 
+    Requisition[] getRequisitions(Integer from, Integer count);
+
     Requisition[] findAll();
 }

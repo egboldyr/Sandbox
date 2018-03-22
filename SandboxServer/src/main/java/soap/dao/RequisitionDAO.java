@@ -16,5 +16,7 @@ public interface RequisitionDAO {
 
     boolean update(Requisition requisition);
 
+    List<Requisition> findRequisitions(Integer from, Integer count);
+
     List<Requisition> findAll();
 }

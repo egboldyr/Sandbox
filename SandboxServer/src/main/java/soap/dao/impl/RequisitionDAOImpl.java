@@ -73,6 +73,23 @@ public class RequisitionDAOImpl implements RequisitionDAO {
     }
 
     @Override
+    public List<Requisition> findRequisitions(Integer from, Integer count) {
+        try {
+            log.info("Receiving " + count + " requisitions...");
+            List<Requisition> requisitions = factory.getCurrentSession()
+                                                        .createCriteria(Requisition.class)
+                                                        .setFirstResult(from)
+                                                        .setMaxResults(count)
+                                                        .list();
+            log.info("Receiving " + count + " requisitions, COMPLETE.");
+            return requisitions;
+        } catch (HibernateException exc) {
+            log.info("Receiving requisitions, FAIL.");
+            return null;
+        }
+    }
+
+    @Override
     public List<Requisition> findAll() {
         try {
             log.info("Receiving all requisitions...");

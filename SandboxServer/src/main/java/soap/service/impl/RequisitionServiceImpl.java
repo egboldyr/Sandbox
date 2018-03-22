@@ -53,6 +53,16 @@ public class RequisitionServiceImpl implements RequisitionService {
     }
 
     @Override
+    public Requisition[] getRequisitions(Integer from, Integer count) {
+        List<Requisition> list = dao.findRequisitions(from, count);
+        Requisition[] requisitions = new Requisition[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            requisitions[i] = list.get(i);
+        }
+        return requisitions;
+    }
+
+    @Override
     public Requisition[] findAll() {
         List<Requisition> list = dao.findAll();
         Requisition[] requisitions = new Requisition[list.size()];
