@@ -3,6 +3,9 @@ package soap.service.impl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import soap.dao.RequisitionDAO;
 import soap.entity.Requisition;
@@ -17,6 +20,7 @@ import java.util.List;
  */
 
 @Service
+@CacheConfig(cacheNames = {"requisitionsCache"})
 public class RequisitionServiceImpl implements RequisitionService {
 
     private Logger log;
@@ -39,13 +43,16 @@ public class RequisitionServiceImpl implements RequisitionService {
     }
 
     @Override
+    @CacheEvict(allEntries = true)
     public boolean update(Long id, String status) {
+        log.info("Requisition updating... Change [STATUS : " + status + "] for requisition [ID : " + id + "].");
         Requisition requisition = dao.read(id);
         if (status.equals("PROCESS")) {
             requisition.setStatus(RequisitionStatus.PROCESS);
         } else if (status.equals("DONE")) {
             requisition.setStatus(RequisitionStatus.DONE);
         } else {
+            log.error("Incorrect [STATUS : " + status + "] Requisition update CANCELED.");
             return false;
         }
         dao.update(requisition);
@@ -53,6 +60,7 @@ public class RequisitionServiceImpl implements RequisitionService {
     }
 
     @Override
+    @Cacheable
     public Requisition[] getRequisitions(Integer from, Integer count) {
         List<Requisition> list = dao.findRequisitions(from, count);
         Requisition[] requisitions = new Requisition[list.size()];
@@ -63,6 +71,7 @@ public class RequisitionServiceImpl implements RequisitionService {
     }
 
     @Override
+    @Cacheable
     public Requisition[] findAll() {
         List<Requisition> list = dao.findAll();
         Requisition[] requisitions = new Requisition[list.size()];
