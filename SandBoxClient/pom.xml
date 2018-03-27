@@ -15,13 +15,13 @@
 
     <properties>
         <spring.ws.version>2.0.0.RELEASE</spring.ws.version>
-        <spring.data.redis.version>2.0.3.RELEASE</spring.data.redis.version>
+        <spring.data.redis.version>1.6.0.RELEASE</spring.data.redis.version>
 
         <apache.jaxws.version>3.2.2</apache.jaxws.version>
         <apache.velocity.version>1.7</apache.velocity.version>
         <apache.velocity.tools.version>2.0</apache.velocity.tools.version>
 
-        <redis.clients.version>2.9.0</redis.clients.version>
+        <redis.clients.version>2.5.2</redis.clients.version>
     </properties>
 
     <dependencies>
@@ -69,16 +69,9 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-redis</artifactId>
-            <version>${spring.data.redis.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
-            <version>${redis.clients.version}</version>
-            <type>jar</type>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
         </dependency>
 
     </dependencies>
