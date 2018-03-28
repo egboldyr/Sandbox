@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.ws.config.annotation.EnableWs;
-import soap.jaxws.AccountWebService;
-import soap.jaxws.AuthorizationWebService;
-import soap.jaxws.ClientWebService;
-import soap.jaxws.RequisitionWebService;
+import soap.jaxws.*;
 
 import javax.xml.ws.Endpoint;
 
@@ -28,6 +25,8 @@ public class EndpointWSConfig {
     @Autowired private ClientWebService clientWS;
     @Autowired private AccountWebService accountWS;
     @Autowired private RequisitionWebService requisitionWS;
+    @Autowired private CourseWebService courseWS;
+    @Autowired private GroupWebService groupWS;
 
     @Bean
     public Endpoint endpoint() {
@@ -36,6 +35,8 @@ public class EndpointWSConfig {
         endpoint.publish("/clients", clientWS);
         endpoint.publish("/accounts", accountWS);
         endpoint.publish("/requisitions", requisitionWS);
+        endpoint.publish("/courses", courseWS);
+        endpoint.publish("/groups", groupWS);
         return endpoint;
     }
 }
