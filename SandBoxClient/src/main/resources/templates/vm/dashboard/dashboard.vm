@@ -3,7 +3,8 @@
         <title>Manager Workspace</title>
         <script>
             #include("/templates/vm/js/lib/jquery-3.3.1.js");
-            #include("/templates/vm/dashboard/js/creation.js");
+            #include("/templates/vm/dashboard/js/requisitions.js");
+            #include("/templates/vm/dashboard/js/clients.js");
             #include("/templates/vm/dashboard/js/dashboard.js");
         </script>
         <style type="text/css">
