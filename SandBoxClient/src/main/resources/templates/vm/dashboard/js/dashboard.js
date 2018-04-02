@@ -89,8 +89,47 @@ function updateClient() {
 
 }
 /**********************************************************************************************************************/
-/* Получение всех клиентов которые зарегистрированы в базе */
+function prevClients() {
+    checkClientsByPart("PREV");
+}
+
+function nextClients() {
+    checkClientsByPart("NEXT");
+}
+
 function checkClients() {
     genClientInterface();
+    jQuery.ajax({
+        type: 'POST',
+        url: '/part_clients',
+        data: {
+            action: "UPLOAD"
+        },
+        success: function (response) {
+            processClients(response);
+        },
+        error: function (errorThrown) {
+            console.log(errorThrown);
+        }
+    });
+}
 
+function checkClientsByPart(text) {
+    jQuery.ajax({
+        type: 'POST',
+        url: '/part_clients',
+        data: {
+            action: text
+        },
+        success: function (response) {
+            processClients(response);
+        },
+        error: function (errorThrown) {
+            console.log(errorThrown);
+        }
+    });
+}
+/**********************************************************************************************************************/
+function createAccount() {
+    
 }

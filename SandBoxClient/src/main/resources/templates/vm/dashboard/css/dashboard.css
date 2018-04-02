@@ -120,7 +120,8 @@ form.form_view label {
 form.form_client p,
 form.form_client div.ns_left p,
 form.form_client div.ns_right p,
-form.client_edit p {
+form.client_edit p,
+form.account_edit p {
     width: 100%;
     padding: 5px 5px 5px 5px;
 
@@ -136,7 +137,8 @@ form.client_edit p {
 form.form_client input[type=text],
 form.form_client div.ns_left input[type=text],
 form.form_client div.ns_right input[type=text],
-form.client_edit input[type=text] {
+form.client_edit input[type=text],
+form.account_edit input[type=text] {
     width: 100%;
     padding: 5px 5px 5px 5px;
 
@@ -148,7 +150,8 @@ form.client_edit input[type=text] {
 }
 
 form.form_client input[type=button],
-form.client_edit input[type=button] {
+form.client_edit input[type=button],
+form.account_edit input[type=button]{
     width: 100%;
     padding: 5px 5px 5px 5px;
     margin: 3px 3px 3px 3px;
@@ -172,7 +175,7 @@ form.client_edit input[type=button] {
     border-radius: 15px;
 }
 /****************************************************************************************************************/
-.account_form {
+.account_edit {
     padding: 15px;
 
     width: 60%;
