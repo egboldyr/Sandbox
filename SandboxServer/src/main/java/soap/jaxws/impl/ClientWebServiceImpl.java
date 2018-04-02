@@ -50,4 +50,10 @@ public class ClientWebServiceImpl implements ClientWebService {
     public boolean delete(Client client) {
         return false;
     }
+
+    @Override
+    public Client[] getClients(Integer from) {
+        log.info("Receiving clients... START");
+        return clientService.findClientsPart(from, 10);
+    }
 }

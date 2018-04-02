@@ -23,4 +23,6 @@ public interface ClientWebService {
     @WebMethod
     boolean delete(Client client);
 
+    @WebMethod
+    Client[] getClients(Integer from);
 }
