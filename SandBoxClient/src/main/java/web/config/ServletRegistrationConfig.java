@@ -3,14 +3,7 @@ package web.config;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import web.servlet.actions.UpdateRequisitionServlet;
 import web.servlet.auth.AuthorizationServlet;
-import web.servlet.actions.NewClientCreateServlet;
-import web.servlet.get.FindAllRequisitionsServlet;
-import web.servlet.get.FindClientsByPartServlet;
-import web.servlet.get.FindRequisitionsByPartServlet;
-import web.servlet.page.DashboardPageServlet;
-import web.servlet.page.IndexPageServlet;
 
 import java.util.Arrays;
 
@@ -22,66 +15,10 @@ import java.util.Arrays;
 public class ServletRegistrationConfig {
 
     @Bean
-    public ServletRegistrationBean pageIndex() {
-        ServletRegistrationBean bean = new ServletRegistrationBean();
-        bean.setServlet(new IndexPageServlet());
-        bean.setUrlMappings(Arrays.asList("/index.html"));
-        return bean;
-    }
-
-    @Bean
-    public ServletRegistrationBean pageDashboard() {
-        ServletRegistrationBean bean = new ServletRegistrationBean();
-        bean.setServlet(new DashboardPageServlet());
-        bean.setUrlMappings(Arrays.asList("/dashboard.html"));
-        return bean;
-    }
-
-    @Bean
     public ServletRegistrationBean servletAuthorization() {
         ServletRegistrationBean bean = new ServletRegistrationBean();
         bean.setServlet(new AuthorizationServlet());
         bean.setUrlMappings(Arrays.asList("/authorization"));
-        return bean;
-    }
-
-    @Bean
-    public ServletRegistrationBean servletAllRequisitions() {
-        ServletRegistrationBean bean = new ServletRegistrationBean();
-        bean.setServlet(new FindAllRequisitionsServlet());
-        bean.setUrlMappings(Arrays.asList("/all_requisitions"));
-        return bean;
-    }
-
-    @Bean
-    public ServletRegistrationBean servletPartRequisitions() {
-        ServletRegistrationBean bean = new ServletRegistrationBean();
-        bean.setServlet(new FindRequisitionsByPartServlet());
-        bean.setUrlMappings(Arrays.asList("/part_requisitions"));
-        return bean;
-    }
-
-    @Bean
-    public ServletRegistrationBean servletNewClient() {
-        ServletRegistrationBean bean = new ServletRegistrationBean();
-        bean.setServlet(new NewClientCreateServlet());
-        bean.setUrlMappings(Arrays.asList("/new_client"));
-        return bean;
-    }
-
-    @Bean
-    public ServletRegistrationBean servletPartClients() {
-        ServletRegistrationBean bean = new ServletRegistrationBean();
-        bean.setServlet(new FindClientsByPartServlet());
-        bean.setUrlMappings(Arrays.asList("/part_clients"));
-        return bean;
-    }
-
-    @Bean
-    public ServletRegistrationBean servletUpdateStatus() {
-        ServletRegistrationBean bean = new ServletRegistrationBean();
-        bean.setServlet(new UpdateRequisitionServlet());
-        bean.setUrlMappings(Arrays.asList("/update_status"));
         return bean;
     }
 }
