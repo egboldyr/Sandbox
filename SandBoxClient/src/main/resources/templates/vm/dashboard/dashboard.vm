@@ -8,7 +8,8 @@
             #include("/templates/vm/dashboard/js/dashboard.js");
         </script>
         <style type="text/css">
-            #include("/templates/vm/dashboard/css/dashboard.css");
+##            #include("/templates/vm/dashboard/css/dashboard.css");
+            #include("/templates/vm/dashboard/css/dashboard_new.css");
         </style>
     </head>
     <body>
