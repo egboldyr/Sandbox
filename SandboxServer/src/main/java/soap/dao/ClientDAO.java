@@ -18,6 +18,6 @@ public interface ClientDAO {
 
     boolean delete(Client client);
 
-    List<Client> getAllClients();
+    List<Client> findClientsPart(Integer from, Integer count);
 
 }

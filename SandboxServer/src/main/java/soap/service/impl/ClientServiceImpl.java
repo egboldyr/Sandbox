@@ -53,7 +53,12 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public List<Client> allClients() {
-        return null;
+    public Client[] findClientsPart(Integer from, Integer count) {
+        List<Client> list = dao.findClientsPart(from, count);
+        Client[] clients = new Client[list.size()];
+        for (int i = 0; i < clients.length; i++) {
+            clients[i] = list.get(i);
+        }
+        return clients;
     }
 }

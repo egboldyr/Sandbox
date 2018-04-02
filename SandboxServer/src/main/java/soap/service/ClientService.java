@@ -17,5 +17,5 @@ public interface ClientService {
 
     void delete(Client client);
 
-    List<Client> allClients();
+    Client[] findClientsPart(Integer from, Integer count);
 }

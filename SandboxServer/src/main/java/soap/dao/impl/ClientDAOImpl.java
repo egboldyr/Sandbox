@@ -63,7 +63,19 @@ public class ClientDAOImpl implements ClientDAO {
     }
 
     @Override
-    public List<Client> getAllClients() {
-        return null;
+    public List<Client> findClientsPart(Integer from, Integer count) {
+        try {
+            log.info("Receiving " + count + " clients...");
+            List<Client> clients = factory.getCurrentSession()
+                                                .createCriteria(Client.class)
+                                                .setFirstResult(from)
+                                                .setMaxResults(count)
+                                                .list();
+            log.info("Receiving " + count + " clients, COMPLETE.");
+            return clients;
+        } catch (HibernateException exc) {
+            log.error("Receiving clients, FAIL.");
+            return null;
+        }
     }
 }
