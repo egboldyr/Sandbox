@@ -3,6 +3,9 @@ package soap.service.impl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import soap.dao.ClientDAO;
 import soap.entity.Client;
@@ -16,6 +19,7 @@ import java.util.List;
  */
 
 @Service
+@CacheConfig(cacheNames = {"clientsCache"})
 public class ClientServiceImpl implements ClientService {
 
     private Logger log;
@@ -29,6 +33,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
+    @CacheEvict(allEntries = true)
     public void create(Client client) {
         if (client == null) {
             log.error("Client can't be NULL.");
@@ -53,6 +58,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
+    @Cacheable
     public Client[] findClientsPart(Integer from, Integer count) {
         List<Client> list = dao.findClientsPart(from, count);
         Client[] clients = new Client[list.size()];

@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import soap.dao.RequisitionDAO;
@@ -34,6 +35,7 @@ public class RequisitionServiceImpl implements RequisitionService {
     }
 
     @Override
+    @CacheEvict(allEntries = true)
     public boolean create(String name, String phone, String email, String comment) {
         Requisition requisition = new Requisition(name, phone, email, comment);
         if (dao.create(requisition) == null) {
