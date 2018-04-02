@@ -38,7 +38,7 @@ function processClients(jsonResult) {
             .append('<td id="client_phone">' + result[i].phone + '</td>')
             .append('<td id="client_email">' + result[i].email + '</td>')
             .append('<td id="client_login"></td>')
-            .append('<td id="client_action"></td>');
+            .append('<td id="client_action"><input class="process" type="button" value="Edit Client" onclick="return editClient(this)"></td>');
     }
 }
 
@@ -63,5 +63,9 @@ function createEditClientInterface() {
         .append('<p>Password</p>')
         .append('<input id="acc_password" type="text">')
         .append('<input type="button" value="Create" onclick="return createAccount()">');
+}
+
+function editClient(btn) {
+
 }
 
