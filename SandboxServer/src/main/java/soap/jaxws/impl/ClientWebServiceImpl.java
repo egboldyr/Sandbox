@@ -43,7 +43,10 @@ public class ClientWebServiceImpl implements ClientWebService {
 
     @Override
     public boolean update(Client client) {
-        return false;
+        log.info("Updating client information [CLIENT_ID: " + client.getId() + "]");
+        clientService.update(client);
+        log.info("Updating client, COMPLETE.");
+        return true;
     }
 
     @Override
