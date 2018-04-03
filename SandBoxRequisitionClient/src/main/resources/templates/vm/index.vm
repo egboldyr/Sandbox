@@ -13,12 +13,12 @@
     <body>
         <fieldset>
             <legend>New Requisition - Form</legend>
-            <form class="" onsubmit="return createRequisition(event)">
-                <label>Name:   <br/><input class="text_field" type="text" id="name"><br/></label>
-                <label>Phone:  <br/><input class="text_field" type="text" id="phone"><br/></label>
-                <label>Email:  <br/><input class="text_field" type="text" id="email"><br/></label>
-                <label>Comment:<br/><input class="area_field" type="text" id="comment"><br/></label>
-                <input class="" type="submit" value="Create"">
+            <form onsubmit="return createRequisition(event)">
+                <p>Name:   <input class="text_field" type="text" id="name"></p>
+                <p>Phone:  <input class="text_field" type="text" id="phone"></p>
+                <p>Email:  <input class="text_field" type="text" id="email"></p>
+                <p>Comment:<input class="area_field" type="text" id="comment"></p>
+                <input type="submit" value="Create"">
             </form>
         </fieldset>
     </body>
