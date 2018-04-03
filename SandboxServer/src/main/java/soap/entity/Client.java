@@ -1,10 +1,7 @@
 package soap.entity;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * Created by EGBoldyr on 15.03.18.
@@ -14,8 +11,6 @@ import java.util.Date;
 
 @Entity
 @Table(name = "CLIENTS")
-@XmlRootElement(name = "client")
-@XmlType(propOrder = {"id", "name", "surname", "phone", "email", "account"})
 public class Client implements Serializable {
 
     @Id

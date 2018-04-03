@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import soap.dto.ClientDTO;
 import soap.entity.Client;
 import soap.jaxws.ClientWebService;
 import soap.service.ClientService;
@@ -31,7 +32,13 @@ public class ClientWebServiceImpl implements ClientWebService {
     }
 
     @Override
-    public boolean create(Client client) {
+    public boolean create(ClientDTO clientDTO) {
+        Client client = new Client();
+        client.setName(clientDTO.getName());
+        client.setSurname(clientDTO.getSurname());
+        client.setPhone(clientDTO.getPhone());
+        client.setEmail(clientDTO.getEmail());
+
         log.info("Start create account service [NEW CLIENT( NAME = " + client.getName() + ", " + client.getSurname() + " )]");
         clientService.create(client);
         if (client.getId() == null) {
@@ -42,7 +49,14 @@ public class ClientWebServiceImpl implements ClientWebService {
     }
 
     @Override
-    public boolean update(Client client) {
+    public boolean update(ClientDTO clientDTO) {
+        Client client = new Client();
+        client.setId(clientDTO.getId());
+        client.setName(clientDTO.getName());
+        client.setSurname(clientDTO.getSurname());
+        client.setPhone(clientDTO.getPhone());
+        client.setEmail(clientDTO.getEmail());
+
         log.info("Updating client information [CLIENT_ID: " + client.getId() + "]");
         clientService.update(client);
         log.info("Updating client, COMPLETE.");
@@ -50,13 +64,26 @@ public class ClientWebServiceImpl implements ClientWebService {
     }
 
     @Override
-    public boolean delete(Client client) {
+    public boolean delete(ClientDTO clientDTO) {
         return false;
     }
 
     @Override
-    public Client[] getClients(Integer from) {
+    public ClientDTO[] getClients(Integer from) {
         log.info("Receiving clients... START");
-        return clientService.findClientsPart(from, 10);
+        Client[] clients = clientService.findClientsPart(from, 10);
+        log.info("Receiving clients... COMPLETE");
+        ClientDTO[] body = new ClientDTO[clients.length];
+        for (int i = 0; i < clients.length; i++) {
+            ClientDTO item = new ClientDTO();
+            item.setId(clients[i].getId());
+            item.setName(clients[i].getName());
+            item.setSurname(clients[i].getSurname());
+            item.setPhone(clients[i].getPhone());
+            item.setEmail(clients[i].getEmail());
+            item.setAccount(clients[i].getAccount() != null ? clients[i].getAccount().getLogin() : "(empty)");
+            body[i] = item;
+        }
+        return body;
     }
 }

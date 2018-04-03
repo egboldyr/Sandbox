@@ -1,6 +1,6 @@
 package soap.jaxws;
 
-import soap.entity.Client;
+import soap.dto.ClientDTO;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -15,14 +15,14 @@ import javax.jws.soap.SOAPBinding;
 public interface ClientWebService {
 
     @WebMethod
-    boolean create(Client client);
+    boolean create(ClientDTO client);
 
     @WebMethod
-    boolean update(Client client);
+    boolean update(ClientDTO client);
 
     @WebMethod
-    boolean delete(Client client);
+    boolean delete(ClientDTO client);
 
     @WebMethod
-    Client[] getClients(Integer from);
+    ClientDTO[] getClients(Integer from);
 }
