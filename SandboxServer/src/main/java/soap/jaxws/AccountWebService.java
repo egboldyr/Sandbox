@@ -16,7 +16,7 @@ import javax.jws.soap.SOAPBinding;
 public interface AccountWebService {
 
     @WebMethod
-    boolean create(Client client, Account account);
+    boolean create(Long id, String login, String password);
 
     @WebMethod
     boolean update(Account account);

@@ -8,6 +8,7 @@ import soap.entity.Account;
 import soap.entity.Client;
 import soap.jaxws.AccountWebService;
 import soap.service.AccountService;
+import soap.service.ClientService;
 
 import javax.annotation.PostConstruct;
 import javax.jws.WebService;
@@ -23,6 +24,9 @@ public class AccountWebServiceImpl implements AccountWebService {
     private Logger log;
 
     @Autowired
+    private ClientService clientService;
+
+    @Autowired
     private AccountService accountService;
 
     @PostConstruct
@@ -32,14 +36,14 @@ public class AccountWebServiceImpl implements AccountWebService {
     }
 
     @Override
-    public boolean create(Client client, Account account) {
+    public boolean create(Long id, String login, String password) {
+        log.info("Getting client [ID : " + id + "]");
+        Client client = clientService.read(id);
+        log.info("Prepare account data...");
+        Account account = new Account(login, password, client);
         log.info("Start create account service [NEW ACCOUNT( LOGIN = " + account.getLogin() + " )]");
         accountService.create(account);
-        if (account.getId() == null) {
-            return false;
-        }
         log.info("Create account [NEW ACCOUNT( LOGIN = " + account.getLogin() + " )] - COMPLETE");
-        client.setAccount(account);
         return true;
     }
 
