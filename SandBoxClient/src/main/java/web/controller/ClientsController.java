@@ -20,6 +20,7 @@ import java.util.List;
 public class ClientsController {
 
     private static final String URL_NEW_CLIENT = "/new_client";
+    private static final String URL_UPDATE_CLIENT = "/update_client";
     private static final String URL_PART_CLIENT = "/part_clients";
 
     private Integer from;
@@ -44,6 +45,20 @@ public class ClientsController {
         client.setPhone(phone);
         client.setEmail(email);
         clientWS.create(client);
+    }
+
+    @RequestMapping(value = URL_UPDATE_CLIENT, method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void updateClient(@RequestParam("id") Long id,
+                             @RequestParam("name") String name, @RequestParam("surname") String surname,
+                             @RequestParam("phone") String phone, @RequestParam("email") String email) {
+        Client client = new Client();
+        client.setId(id);
+        client.setName(name);
+        client.setSurname(surname);
+        client.setPhone(phone);
+        client.setEmail(email);
+        clientWS.update(client);
     }
 
     @RequestMapping(value = URL_PART_CLIENT, method = RequestMethod.POST)
