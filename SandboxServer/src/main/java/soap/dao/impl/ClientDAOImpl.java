@@ -49,12 +49,29 @@ public class ClientDAOImpl implements ClientDAO {
 
     @Override
     public Client read(Long id) {
-        return null;
+        try {
+            log.info("Reading client... [ID : " + id + "]");
+            Client client = factory.getCurrentSession().get(Client.class, id);
+            log.info("Reading client... SUCCESS.");
+            return client;
+        } catch (HibernateException exc) {
+            log.error("Reading client... FAIL. Incorrect [ID : " + id + "]");
+            return null;
+        }
     }
 
     @Override
     public boolean update(Client client) {
-        return false;
+        try {
+            log.info("Updating client... [ID : " + client.getId() + "]");
+            factory.getCurrentSession().update(client);
+            log.info("Updating client... SUCCESS.");
+            return true;
+        } catch (HibernateException exc) {
+            factory.getCurrentSession().getTransaction().rollback();
+            log.error("Updating client... FAIL.");
+            return false;
+        }
     }
 
     @Override

@@ -1,5 +1,6 @@
 package soap.service.impl;
 
+import org.hibernate.HibernateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,13 +44,15 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public Client read(Long id) {
-        return null;
-    }
-
-    @Override
+    @CacheEvict(allEntries = true)
     public void update(Client client) {
-
+        if (client != null) {
+            log.info("Client updating... ");
+            dao.update(client);
+            log.info("Client updating... SUCCESS.");
+        } else {
+            log.error("Client not be NULL. Updating FAIL.");
+        }
     }
 
     @Override
