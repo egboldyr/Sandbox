@@ -23,12 +23,13 @@ function createRequisitionTable() {
         .append('<th>ACTIONS</th>');
 }
 
-function createRequisitionProcessForm(name, phone, email, comment) {
+function createRequisitionProcessForm(id, name, phone, email, comment) {
     jQuery('#forms')
         .empty()
         .append('<form id="requisition_form" class="form_view"></form>');
 
     jQuery('#requisition_form')
+        .append('<p id="r_id">' + id + '</p>')
         .append('<p>Name </p>')
         .append('<label>' + name + '</label><br/>')
         .append('<p>Phone</p>')
@@ -60,6 +61,7 @@ function createClientCreationForm() {
 function processRequisition(btn) {
     var requisition = btn.parentNode.parentNode;
     createRequisitionProcessForm(
+        jQuery(requisition).find("#req_id").html(),
         jQuery(requisition).find("#req_name").html(),
         jQuery(requisition).find("#req_phone").html(),
         jQuery(requisition).find("#req_email").html(),
@@ -68,6 +70,11 @@ function processRequisition(btn) {
     /*Меняем статус заявки в случае с откытием к обработке*/
     requisitionStatusUpdate(jQuery(requisition).find("#req_id").html(), "PROCESS");
     createClientCreationForm();
+}
+/*********************************************************************************************************************/
+function closeRequisition(btn) {
+    var requisition = btn.parentNode.parentNode;
+    requisitionStatusUpdate(jQuery(requisition).find("#req_id").html(), "DONE");
 }
 /*********************************************************************************************************************/
 function processRequisitions(jsonResult) {
@@ -93,6 +100,9 @@ function processRequisitions(jsonResult) {
                 .append('<td><input class="process" type="button" value="Process" onclick="processRequisition(this)"></td>')
         } else if (result[i].status == 'PROCESS') {
             jQuery('#cur_row' + i).append('<td></td>');
+        } else if (result[i].status == 'COMPLETE') {
+            jQuery('#cur_row' + i)
+                .append('<td><input class="close" type="button" value="Close" onclick="closeRequisition(this)"></td>');
         }
     }
 }

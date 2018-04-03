@@ -79,8 +79,7 @@ function createClient() {
             jQuery('#phone').val('');
             jQuery('#email').val('');
 
-            /*В случае успешного создания карточки клиента закрываем заявку*/
-            /*requisitionStatusUpdate("DONE");*/
+            requisitionStatusUpdate(jQuery("#r_id").html(), "COMPLETE");
         }
     });
 }
