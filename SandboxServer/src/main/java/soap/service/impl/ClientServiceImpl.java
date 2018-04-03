@@ -44,6 +44,14 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
+    public Client read(Long id) {
+        if (id != null) {
+            return dao.read(id);
+        }
+        return null;
+    }
+
+    @Override
     @CacheEvict(allEntries = true)
     public void update(Client client) {
         if (client != null) {
