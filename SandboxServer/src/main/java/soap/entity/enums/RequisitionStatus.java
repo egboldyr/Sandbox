@@ -5,10 +5,11 @@ package soap.entity.enums;
  *
  * Тип данных "Статус заявки"
  *
- * - NEW     (Новая заявка с клиент-сайта)
- * - PROCESS (Заявка которая находится в обработке)
- * - WAITING (Заявка которая находится в режиме ожидания)
- * - DONE    (Заявка закрыта)
+ * - NEW      (Новая заявка с клиент-сайта)
+ * - PROCESS  (Заявка которая находится в обработке)
+ * - WAITING  (Заявка которая находится в режиме ожидания)
+ * - COMPLETE (Заявка по которой был создан клиент)
+ * - DONE     (Заявка закрыта)
  */
 
 public enum RequisitionStatus {
@@ -16,6 +17,7 @@ public enum RequisitionStatus {
     NEW,
     PROCESS,
     WAITING,
+    COMPLETE,
     DONE
 
 }
