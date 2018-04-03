@@ -51,6 +51,8 @@ public class RequisitionServiceImpl implements RequisitionService {
         Requisition requisition = dao.read(id);
         if (status.equals("PROCESS")) {
             requisition.setStatus(RequisitionStatus.PROCESS);
+        } else if (status.equals("COMPLETE")) {
+            requisition.setStatus(RequisitionStatus.COMPLETE);
         } else if (status.equals("DONE")) {
             requisition.setStatus(RequisitionStatus.DONE);
         } else {
