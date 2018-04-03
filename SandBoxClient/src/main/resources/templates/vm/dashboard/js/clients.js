@@ -30,7 +30,7 @@ function processClients(jsonResult) {
     jQuery('#tblBody').empty();
 
     for (var i = 0; i < result.length; i++) {
-        jQuery('#tblBody').append('<tr id="cur_row' + i + '"></tr>');
+        jQuery('#tblBody').append('<tr id="cur_row' + i + '" class="item"></tr>');
         jQuery('#cur_row' + i)
             .append('<td id="client_id">' + result[i].id + '</td>')
             .append('<td id="client_name">' + result[i].name + '</td>')
@@ -48,24 +48,24 @@ function createEditClientInterface() {
         .append('<form id="client_form" class="client_edit"></form>')
         .append('<form id="account_form" class="account_edit"></form>');
     jQuery('#client_form')
-        .append('<p>Name</p>')
-        .append('<input id="cl_name" type="text">')
-        .append('<p>Surname</p>')
-        .append('<input id="cl_surname" type="text">')
-        .append('<p>Phone number</p>')
-        .append('<input id="cl_phone" type="text">')
-        .append('<p>Email</p>')
-        .append('<input id="cl_email" type="text">')
+        .append('<p>Client ID <input id="cl_id" type="text" disabled="true"></p>')
+        .append('<p>Name <input id="cl_name" type="text"></p>')
+        .append('<p>Surname <input id="cl_surname" type="text"></p>')
+        .append('<p>Phone number <input id="cl_phone" type="text"></p>')
+        .append('<p>Email <input id="cl_email" type="text"></p>')
         .append('<input type="button" value="Update" onclick="return updateClient()">');
     jQuery('#account_form')
-        .append('<p>Login</p>')
-        .append('<input id="acc_login" type="text">')
-        .append('<p>Password</p>')
-        .append('<input id="acc_password" type="text">')
+        .append('<p>Login<input id="acc_login" type="text"></p>')
+        .append('<p>Password<input id="acc_password" type="text"></p>')
         .append('<input type="button" value="Create" onclick="return createAccount()">');
 }
 
 function editClient(btn) {
-
+    var client = btn.parentNode.parentNode;
+    jQuery('#cl_id').val(jQuery(client).find("#client_id").html());
+    jQuery('#cl_name').val(jQuery(client).find("#client_name").html());
+    jQuery('#cl_surname').val(jQuery(client).find("#client_surname").html());
+    jQuery('#cl_phone').val(jQuery(client).find("#client_phone").html());
+    jQuery('#cl_email').val(jQuery(client).find("#client_email").html());
 }
 

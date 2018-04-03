@@ -85,7 +85,27 @@ function createClient() {
 }
 
 function updateClient() {
-
+    jQuery.ajax({
+        type: 'POST',
+        url: '/update_client',
+        data : {
+            id: jQuery('#cl_id').val(),
+            name: jQuery('#cl_name').val(),
+            surname: jQuery('#cl_surname').val(),
+            phone: jQuery('#cl_phone').val(),
+            email: jQuery('#cl_email').val()
+        },
+        success : function () {
+            jQuery("tr.item").each(function() {
+                if (jQuery(this).find("#client_id").html() === jQuery('#cl_id').val()) {
+                    jQuery(this).find("#client_name").html(jQuery('#cl_name').val());
+                    jQuery(this).find("#client_surname").html(jQuery('#cl_surname').val());
+                    jQuery(this).find("#client_phone").html(jQuery('#cl_phone').val());
+                    jQuery(this).find("#client_email").html(jQuery('#cl_email').val());
+                }
+            });
+        }
+    })
 }
 /**********************************************************************************************************************/
 function prevClients() {
