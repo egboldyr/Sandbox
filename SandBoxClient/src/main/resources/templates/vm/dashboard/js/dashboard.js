@@ -150,5 +150,20 @@ function checkClientsByPart(text) {
 }
 /**********************************************************************************************************************/
 function createAccount() {
-    
+    jQuery.ajax({
+        type: 'POST',
+        url: '/new_account',
+        data: {
+            id: jQuery('#cl_id').val(),
+            login: jQuery('#acc_login').val(),
+            password: jQuery('#acc_password').val()
+        },
+        success: function () {
+            jQuery("tr.item").each(function() {
+                if (jQuery(this).find("#client_id").html() === jQuery('#cl_id').val()) {
+                    jQuery(this).find("#client_login").html(jQuery('#acc_login').val());
+                }
+            });
+        }
+    });
 }
