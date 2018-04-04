@@ -1,5 +1,6 @@
 package soap.jaxws.impl;
 
+import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ public class RequisitionWebServiceImpl implements RequisitionWebService {
 
     @Autowired
     private RequisitionService service;
+
+    @Autowired
+    private DozerBeanMapper mapper;
 
     @PostConstruct
     private void initialize() {
@@ -52,27 +56,19 @@ public class RequisitionWebServiceImpl implements RequisitionWebService {
         Requisition[] requisitions = service.getRequisitions(from, count);
         RequisitionDTO[] body = new RequisitionDTO[requisitions.length];
         for (int i = 0; i < requisitions.length; i++) {
-            RequisitionDTO item = new RequisitionDTO();
-            item.setId(requisitions[i].getId());
-            item.setStatus(requisitions[i].getStatus().toString());
-            item.setName(requisitions[i].getName());
-            item.setPhoneNumber(requisitions[i].getPhoneNumber());
-            item.setEmail(requisitions[i].getEmail());
-            item.setComment(requisitions[i].getComment());
-            item.setCreationDate(sdf.format(requisitions[i].getCreationDate()));
-            body[i] = item;
+            body[i] = mapper.map(requisitions[i], RequisitionDTO.class);
         }
         return body;
     }
 
     @Override
     public RequisitionDTO[] allRequisitions() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         log.info("Receiving all requisitions... START");
         Requisition[] requisitions = service.findAll();
-
         RequisitionDTO[] body = new RequisitionDTO[requisitions.length];
-        //TODO : Добавить обработку по мере необходимости
+        for (int i = 0; i < requisitions.length; i++) {
+            body[i] = mapper.map(requisitions[i], RequisitionDTO.class);
+        }
         return body;
     }
 }
