@@ -4,7 +4,9 @@ import org.dozer.DozerBeanMapper;
 import org.dozer.loader.api.BeanMappingBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import soap.dto.ClientDTO;
 import soap.dto.RequisitionDTO;
+import soap.entity.Client;
 import soap.entity.Requisition;
 
 /**
@@ -20,6 +22,8 @@ public class MapperConfig {
             @Override
             protected void configure() {
                 mapping(RequisitionDTO.class, Requisition.class);
+                mapping(ClientDTO.class, Client.class)
+                        .fields("account", "account.login");
             }
         };
     }

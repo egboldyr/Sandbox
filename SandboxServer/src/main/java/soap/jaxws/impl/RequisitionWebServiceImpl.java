@@ -12,7 +12,6 @@ import soap.service.RequisitionService;
 
 import javax.annotation.PostConstruct;
 import javax.jws.WebService;
-import java.text.SimpleDateFormat;
 
 /**
  * Created by EGBoldyr on 19.03.18.
@@ -50,9 +49,7 @@ public class RequisitionWebServiceImpl implements RequisitionWebService {
 
     @Override
     public RequisitionDTO[] getRequisitions(Integer from, Integer count) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         log.info("Receiving " + count + " requisitions... START");
-
         Requisition[] requisitions = service.getRequisitions(from, count);
         RequisitionDTO[] body = new RequisitionDTO[requisitions.length];
         for (int i = 0; i < requisitions.length; i++) {

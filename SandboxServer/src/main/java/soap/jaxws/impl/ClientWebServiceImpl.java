@@ -1,5 +1,6 @@
 package soap.jaxws.impl;
 
+import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,9 @@ public class ClientWebServiceImpl implements ClientWebService {
 
     @Autowired
     private ClientService clientService;
+
+    @Autowired
+    private DozerBeanMapper mapper;
 
     @PostConstruct
     private void initialize() {
@@ -75,14 +79,7 @@ public class ClientWebServiceImpl implements ClientWebService {
         log.info("Receiving clients... COMPLETE");
         ClientDTO[] body = new ClientDTO[clients.length];
         for (int i = 0; i < clients.length; i++) {
-            ClientDTO item = new ClientDTO();
-            item.setId(clients[i].getId());
-            item.setName(clients[i].getName());
-            item.setSurname(clients[i].getSurname());
-            item.setPhone(clients[i].getPhone());
-            item.setEmail(clients[i].getEmail());
-            item.setAccount(clients[i].getAccount() != null ? clients[i].getAccount().getLogin() : "(empty)");
-            body[i] = item;
+            body[i] = mapper.map(clients[i], ClientDTO.class);
         }
         return body;
     }
