@@ -47,15 +47,13 @@ function createClientCreationForm() {
     jQuery('#client_form')
         .append('<div id="ns"></div>')
         .append('<br/><br/><br/><br/><br/><br/>') /*Костыли :(*/
-        .append('<p>Phone</p>')
-        .append('<input id="phone" type="text">')
-        .append('<p>Email</p>')
-        .append('<input id="email" type="text">')
+        .append('<p>Phone<input id="phone" type="text"></p>')
+        .append('<p>Email<input id="email" type="text"></p>')
         .append('<input type="button" value="Create Client" onclick="return createClient()">');
 
     jQuery('#ns')
-        .append('<div class="ns_left"><p>Name:</p><input id="name" type="text"></div>')
-        .append('<div class="ns_right"><p>Surname:</p><input id="surname" type="text"></div>');
+        .append('<div class="ns_left"><p>Name:<input id="name" type="text"></p></div>')
+        .append('<div class="ns_right"><p>Surname:<input id="surname" type="text"></p></div>');
 }
 /*********************************************************************************************************************/
 function processRequisition(btn) {
