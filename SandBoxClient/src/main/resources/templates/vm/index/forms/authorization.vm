@@ -1,8 +1,8 @@
 <fieldset>
     <legend>Authorization</legend>
     <form onsubmit="return authorization(event)">
-        <p>Login:</p><input type="text" id="login"><br/>
-        <p>Password:</p><input type="password" id="password"><br/>
+        <p>Login:<input type="text" id="login"></p>
+        <p>Password:<input type="password" id="password"></p>
         <input type="submit" value="Sign In"">
     </form>
 </fieldset>

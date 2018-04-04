@@ -1,72 +1,75 @@
 body {
-    background-color: #6495ed;
+    background: #fafafa;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa));
+    background: -moz-linear-gradient(top,  #fbfbfb,  #fafafa);
 }
 
 fieldset {
-    margin-top: 15%;
+    background: #ededed;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb));
+    background: -moz-linear-gradient(top,  #ededed,  #ebebeb);
+
+    margin-top: 10%;
     margin-left: 40%;
     margin-right: 40%;
 
-    border: 3px solid #00008b;
-    border-radius: 10px;
-
-    background: #add8e6;
+    text-align: center;
 }
 
 legend {
-    padding: 3px 3px 3px 3px;
+    color:#666;
 
-    border: 3px solid #00008b;
-    border-radius: 10px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #fff #ccc #999 #eee;
 
-    color: #ffffff;
-    background: #1e90ff;
-
-    border-radius: 10px;
+    padding: 5px 5px 5px 5px;
 
     font-family: "Times New Roman", serif;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 form p {
-    width: 95%;
-    margin: 5px 5px 5px 5px;
+    width: 97%;
     padding: 5px 5px 5px 5px;
 
-    color: #ffffff;
-    background: #1e90ff;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #fff #ccc #999 #eee;
 
-    border-radius: 10px;
+    background: #f2f2f2;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0));
+    background: -moz-linear-gradient(top,  #f2f2f2,  #f0f0f0);
 
     font-family: "Times New Roman", serif;
-    font-size: 18px;
+    font-size: 14px;
 }
 
 form input[type=text],
 form input[type=password] {
-    width: 98%;
-    margin: 5px 5px 5px 5px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #fff #ccc #999 #eee;
+
+    width: 100%;
+
     padding: 5px 5px 5px 5px;
-
-    border: 1px solid #4682b4;
-    border-radius: 10px;
-
-    font-family: "Times New Roman", serif;
-    font-size: 18px;
-
-    text-align: right;
 }
 
 form input[type=submit] {
-    width: 98%;
-    margin: 5px 5px 5px 5px;
-    padding: 7px 7px 7px 7px;
+    width: 50%;
+    padding: 5px;
 
-    color: #ffffff;
-    background: #1e90ff;
-    border: 1px solid #4169e1;
-    border-radius: 10px;
+    background: lightgreen;
+    background: -webkit-gradient(linear, 0 0, 0 bottom, from(lightgreen), to(darkgreen));
+    background: -moz-linear-gradient(lightgreen, darkgreen);
+    background: linear-gradient(lightgreen, darkgreen);
+    border: solid 1px darkgreen;
+    border-bottom: solid 3px darkgreen;
+    box-shadow: inset 0 0 0 1px lightgreen;
+    color: #fff;
+    text-shadow: 0 1px 0 darkgreen;
 
-    font-family: "Times New Roman", serif;
-    font-size: 18px;
+    font-family: "Arial", Serif;
+    font-size: 12px;
 }
