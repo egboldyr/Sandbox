@@ -89,7 +89,7 @@ public class ClientsController {
             item.put("surname", c.getSurname());
             item.put("phone", c.getPhone());
             item.put("email", c.getEmail());
-            item.put("login", c.getAccount());
+            item.put("login", c.getAccount() == null ? "(empty)" : c.getAccount());
             body.add(item);
         }
         return body.toJSONString();

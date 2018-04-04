@@ -52,9 +52,6 @@ public class RequisitionsController {
         }
 
         List<RequisitionDTO> requisitions = requisitionWS.getRequisitions(from, amount).getItem();
-
-        System.out.println(requisitions);
-
         JSONArray body = new JSONArray();
         for (RequisitionDTO req : requisitions) {
             JSONObject jsonItem = new JSONObject();
