@@ -3,6 +3,7 @@ package soap.service.impl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import soap.dao.AccountDAO;
 import soap.entity.Account;
@@ -28,6 +29,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
+    @CacheEvict(value = "clientsCache", allEntries = true)
     public void create(Account account) {
         if (account == null) {
             log.error("Account can't be NULL.");
