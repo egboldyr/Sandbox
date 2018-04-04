@@ -24,19 +24,16 @@ public class ClientsController {
 
     private Integer from;
 
-    private ClientService clientService;
     private ClientWebService clientWS;
-
-    private AccountService accountService;
     private AccountWebService accountWS;
 
     @PostConstruct
     private void initialize() {
         from = 0;
-        clientService = new ClientService();
+        ClientService clientService = new ClientService();
         clientWS = clientService.getClientPort();
 
-        accountService = new AccountService();
+        AccountService accountService = new AccountService();
         accountWS = accountService.getAccountPort();
     }
 
