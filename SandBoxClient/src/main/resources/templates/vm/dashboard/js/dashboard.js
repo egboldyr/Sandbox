@@ -162,6 +162,8 @@ function createAccount() {
             jQuery("tr.item").each(function() {
                 if (jQuery(this).find("#client_id").html() === jQuery('#cl_id').val()) {
                     jQuery(this).find("#client_login").html(jQuery('#acc_login').val());
+                    jQuery('#acc_login').val('');
+                    jQuery('#acc_password').val('');
                 }
             });
         }
