@@ -4,12 +4,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import soap.dto.RequisitionDTO;
 import soap.entity.Requisition;
 import soap.jaxws.RequisitionWebService;
 import soap.service.RequisitionService;
 
 import javax.annotation.PostConstruct;
 import javax.jws.WebService;
+import java.text.SimpleDateFormat;
 
 /**
  * Created by EGBoldyr on 19.03.18.
@@ -43,14 +45,34 @@ public class RequisitionWebServiceImpl implements RequisitionWebService {
     }
 
     @Override
-    public Requisition[] getRequisitions(Integer from, Integer count) {
+    public RequisitionDTO[] getRequisitions(Integer from, Integer count) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         log.info("Receiving " + count + " requisitions... START");
-        return service.getRequisitions(from, count);
+
+        Requisition[] requisitions = service.getRequisitions(from, count);
+        RequisitionDTO[] body = new RequisitionDTO[requisitions.length];
+        for (int i = 0; i < requisitions.length; i++) {
+            RequisitionDTO item = new RequisitionDTO();
+            item.setId(requisitions[i].getId());
+            item.setStatus(requisitions[i].getStatus().toString());
+            item.setName(requisitions[i].getName());
+            item.setPhoneNumber(requisitions[i].getPhoneNumber());
+            item.setEmail(requisitions[i].getEmail());
+            item.setComment(requisitions[i].getComment());
+            item.setCreationDate(sdf.format(requisitions[i].getCreationDate()));
+            body[i] = item;
+        }
+        return body;
     }
 
     @Override
-    public Requisition[] allRequisitions() {
+    public RequisitionDTO[] allRequisitions() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         log.info("Receiving all requisitions... START");
-        return service.findAll();
+        Requisition[] requisitions = service.findAll();
+
+        RequisitionDTO[] body = new RequisitionDTO[requisitions.length];
+        //TODO : Добавить обработку по мере необходимости
+        return body;
     }
 }

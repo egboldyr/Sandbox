@@ -1,5 +1,6 @@
 package soap.jaxws;
 
+import soap.dto.RequisitionDTO;
 import soap.entity.Requisition;
 
 import javax.jws.WebMethod;
@@ -21,8 +22,8 @@ public interface RequisitionWebService {
     boolean updateStatus(Long id, String status);
 
     @WebMethod
-    Requisition[] getRequisitions(Integer from, Integer count);
+    RequisitionDTO[] getRequisitions(Integer from, Integer count);
 
     @WebMethod
-    Requisition[] allRequisitions();
+    RequisitionDTO[] allRequisitions();
 }

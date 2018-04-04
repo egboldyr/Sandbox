@@ -3,8 +3,6 @@ package soap.entity;
 import soap.entity.enums.RequisitionStatus;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
@@ -15,8 +13,6 @@ import java.util.Date;
 
 @Entity
 @Table(name = "REQUISITIONS")
-@XmlRootElement(name = "requisition")
-@XmlType(propOrder = {"id", "name", "phoneNumber", "email", "comment", "status", "creationDate"})
 public class Requisition implements Serializable {
 
     @Id
