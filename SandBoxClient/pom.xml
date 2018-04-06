@@ -94,6 +94,8 @@
                         <wsdlUrl>http://localhost:8585/services/requisitions?wsdl</wsdlUrl>
                         <wsdlUrl>http://localhost:8585/services/clients?wsdl</wsdlUrl>
                         <wsdlUrl>http://localhost:8585/services/accounts?wsdl</wsdlUrl>
+                        <wsdlUrl>http://localhost:8585/services/courses?wsdl</wsdlUrl>
+                        <wsdlUrl>http://localhost:8585/services/groups?wsdl</wsdlUrl>
                     </wsdlUrls>
                     <packageName>web.jaxws</packageName>
                     <sourceDestDir>${basedir}/src/main/java</sourceDestDir>
