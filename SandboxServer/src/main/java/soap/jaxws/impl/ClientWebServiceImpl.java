@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import soap.dto.ClientDTO;
 import soap.entity.Client;
+import soap.entity.Course;
 import soap.jaxws.ClientWebService;
 import soap.service.ClientService;
+import soap.service.CourseService;
 
 import javax.annotation.PostConstruct;
 import javax.jws.WebService;
@@ -25,6 +27,9 @@ public class ClientWebServiceImpl implements ClientWebService {
 
     @Autowired
     private ClientService clientService;
+
+    @Autowired
+    private CourseService courseService;
 
     @Autowired
     private DozerBeanMapper mapper;
@@ -82,5 +87,24 @@ public class ClientWebServiceImpl implements ClientWebService {
             body[i] = mapper.map(clients[i], ClientDTO.class);
         }
         return body;
+    }
+
+    @Override
+    public boolean writeDownClientOnCourse(Long courseId, Long clientId) {
+        log.info("Checking client... [ ID : " + clientId + "]");
+        Client client = clientService.read(clientId);
+        log.info("Checking client COMPLETE.");
+        log.info("Checking course... [ ID : " + courseId + "]");
+        Course course = courseService.read(courseId);
+        log.info("Checking course COMPLETE.");
+        if (client.getCourses().contains(course)) {
+            log.warn("Client already recorded...");
+            return false;
+        }
+        log.info("Write down client [ ID: " + clientId + "] on course [ ID: " + courseId + "] ...");
+        client.getCourses().add(course);
+        clientService.update(client);
+        log.info("Write down SUCCESS!");
+        return true;
     }
 }

@@ -44,6 +44,14 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    public Course read(Long id) {
+        if (id != null) {
+            return dao.read(id);
+        }
+        return null;
+    }
+
+    @Override
     public Course findByTitle(String title) {
         if (title == null) {
             return null;

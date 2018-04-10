@@ -10,6 +10,8 @@ public interface CourseService {
 
     boolean create(String title);
 
+    Course read(Long id);
+
     Course findByTitle(String title);
 
     Course[] findAll();

@@ -35,7 +35,7 @@ public class Client implements Serializable {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Account account;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "WRITE_DOWN_COURSES",
                joinColumns = @JoinColumn(name = "CLIENT_ID"),
                inverseJoinColumns = @JoinColumn(name = "COURSE_ID"))

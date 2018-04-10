@@ -25,4 +25,7 @@ public interface ClientWebService {
 
     @WebMethod
     ClientDTO[] getClients(Integer from);
+
+    @WebMethod
+    boolean writeDownClientOnCourse(Long courseId, Long clientId);
 }
