@@ -18,6 +18,9 @@ public interface CourseWebService {
     boolean newCourse(String title);
 
     @WebMethod
+    CourseDTO findByTitle(String title);
+
+    @WebMethod
     CourseDTO[] allCourses();
 
 }

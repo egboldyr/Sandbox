@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -33,13 +34,21 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    @CachePut
+    @CacheEvict(allEntries = true)
     public boolean create(String title) {
         Course course = new Course(title);
         if (dao.create(course) == null) {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public Course findByTitle(String title) {
+        if (title == null) {
+            return null;
+        }
+        return dao.findByTitle(title);
     }
 
     @Override

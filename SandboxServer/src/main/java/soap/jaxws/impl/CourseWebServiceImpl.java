@@ -42,6 +42,13 @@ public class CourseWebServiceImpl implements CourseWebService {
     }
 
     @Override
+    public CourseDTO findByTitle(String title) {
+        log.info("Starting find course by TITLE option...");
+        Course course = service.findByTitle(title);
+        return mapper.map(course, CourseDTO.class);
+    }
+
+    @Override
     public CourseDTO[] allCourses() {
         log.info("Receiving all courses... START");
         log.info("Receiving clients... START");

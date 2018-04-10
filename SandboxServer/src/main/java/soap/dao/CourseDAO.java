@@ -14,6 +14,8 @@ public interface CourseDAO {
 
     Course read(Long id);
 
+    Course findByTitle(String title);
+
     List<Course> findAll();
 
 }

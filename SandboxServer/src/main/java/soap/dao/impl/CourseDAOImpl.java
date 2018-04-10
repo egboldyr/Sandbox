@@ -2,6 +2,7 @@ package soap.dao.impl;
 
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,22 @@ public class CourseDAOImpl implements CourseDAO {
             return course;
         } catch (HibernateException exc) {
             log.error("Reading course... FAIL. Incorrect [ID : " + id + "]");
+            return null;
+        }
+    }
+
+    @Override
+    public Course findByTitle(String title) {
+        try {
+            log.info("Reading course... [ TITLE : " + title + "]");
+            Course course = (Course) factory.getCurrentSession()
+                    .createCriteria(Course.class)
+                    .add(Restrictions.eq("title", title))
+                    .uniqueResult();
+            log.info("Reading course... COMPLETE.");
+            return course;
+        } catch (HibernateException exc) {
+            log.error("Reading course... FAIL. Incorrect [TITLE : " + title + "]");
             return null;
         }
     }
