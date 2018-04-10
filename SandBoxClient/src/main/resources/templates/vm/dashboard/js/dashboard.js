@@ -169,3 +169,35 @@ function createAccount() {
         }
     });
 }
+/**********************************************************************************************************************/
+function checkCoursesAndGroups() {
+    genCoursesAndGroupsInterface();
+    getCourseData();
+}
+
+function getCourseData() {
+    jQuery.ajax({
+        type: 'GET',
+        url: '/get_courses',
+        success: function (response) {
+            processCourses(response);
+        },
+        error: function (errorThrown) {
+            console.log(errorThrown);
+        }
+    })
+}
+
+function createCourse() {
+    jQuery.ajax({
+        type: 'POST',
+        url: '/new_course',
+        data: {
+            title: jQuery('#course_title').val()
+        },
+        success: function () {
+            jQuery('#course_title').val('');
+        }
+    });
+}
+/**********************************************************************************************************************/

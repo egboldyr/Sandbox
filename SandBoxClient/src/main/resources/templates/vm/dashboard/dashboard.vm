@@ -5,23 +5,24 @@
             #include("/templates/vm/js/lib/jquery-3.3.1.js");
             #include("/templates/vm/dashboard/js/requisitions.js");
             #include("/templates/vm/dashboard/js/clients.js");
+            #include("/templates/vm/dashboard/js/courses.js");
             #include("/templates/vm/dashboard/js/dashboard.js");
         </script>
         <style type="text/css">
-##            #include("/templates/vm/dashboard/css/dashboard.css");
             #include("/templates/vm/dashboard/css/dashboard_new.css");
         </style>
     </head>
-    <body>
+    <body onload="checkRequisitions()">
         <div class="panel_div">
             <fieldset>
                 <p><input class="option" type="button" value="Requistions" onclick="return checkRequisitions()"></p>
                 <p><input class="option" type="button" value="Clients" onclick="return checkClients()"></p>
+                <p><input class="option" type="button" value="Courses and Groups" onclick="return checkCoursesAndGroups()"></p>
             </fieldset>
         </div>
         <div class="workspace_div">
             <fieldset>
-                <div id="workspace" class="workspace"></div>
+                <div id="workspace" class="workspace" ></div>
             </fieldset>
         </div>
     </body>
