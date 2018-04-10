@@ -159,8 +159,10 @@ table tr:hover td {
 }
 
 .process,
+#course_form input[type=button],
 form.form_client input[type=button],
 form.client_edit input[type=button],
+form.course_edit input[type=button],
 form.account_edit input[type=button] {
     width: 100%;
     padding: 5px;
@@ -179,6 +181,33 @@ form.account_edit input[type=button] {
     font-size: 12px;
 }
 
+.process:hover,
+#course_form input[type=button]:hover,
+form.form_client input[type=button]:hover,
+form.client_edit input[type=button]:hover,
+form.course_edit input[type=button]:hover,
+form.account_edit input[type=button]:hover {
+    background: darkgreen;
+    background: -webkit-gradient(linear, 0 0, 0 bottom, from(darkgreen), to(lightgreen));
+    background: -moz-linear-gradient(darkgreen, lightgreen);
+    background: linear-gradient(darkgreen, lightgreen);
+    border: solid 1px darkgreen;
+    border-bottom: solid 3px darkgreen;
+    box-shadow: inset 0 0 0 1px lightgreen; }
+
+.process:active,
+#course_form input[type=button]:active,
+form.form_client input[type=button]:active,
+form.client_edit input[type=button]:active,
+form.course_edit input[type=button]:active,
+form.account_edit input[type=button]:active {
+    background: darkgreen;
+    background: -webkit-gradient(linear, 0 0, 0 bottom, from(darkgreen), to(lightgreen));
+    background: -moz-linear-gradient(darkgreen, lightgreen);
+    background: linear-gradient(darkgreen, lightgreen);
+    border: solid 1px darkgreen;
+    box-shadow: inset 0 10px 15px 0 darkgreen; }
+
 .close {
     width: 100%;
     padding: 5px;
@@ -196,6 +225,23 @@ form.account_edit input[type=button] {
     font-family: "Arial", Serif;
     font-size: 12px;
 }
+
+.close:hover {
+    background: darkred;
+    background: -webkit-gradient(linear, 0 0, 0 bottom, from(darkred), to(lightcoral));
+    background: -moz-linear-gradient(darkred, lightcoral);
+    background: linear-gradient(darkred, lightcoral);
+    border: solid 1px darkred;
+    border-bottom: solid 3px darkred;
+    box-shadow: inset 0 0 0 1px lightcoral; }
+
+.close:active {
+    background: darkred;
+    background: -webkit-gradient(linear, 0 0, 0 bottom, from(darkred), to(lightcoral));
+    background: -moz-linear-gradient(darkred, lightcoral);
+    background: linear-gradient(darkred, lightcoral);
+    border: solid 1px darkred;
+    box-shadow: inset 0 10px 15px 0 darkred; }
 /**********************************************************************************************************************/
 .nav_pnl {
     padding: 5px;
@@ -262,11 +308,36 @@ div.nav_pnl input[type=button]:active {
 /**********************************************************************************************************************/
 .client_edit {
     width: 30%;
+    padding: 5px;
+
+    border-width: 1px;
+    border-style: solid;
+    border-color: #fff #ccc #999 #eee;
+
+    float: left;
+}
+/**********************************************************************************************************************/
+.course_edit {
+    width: 30%;
+    margin-left: 3%;
+    margin-right: 3%;
+    padding: 5px;
+
+    border-width: 1px;
+    border-style: solid;
+    border-color: #fff #ccc #999 #eee;
+
     float: left;
 }
 /**********************************************************************************************************************/
 .account_edit {
     width: 30%;
+    padding: 5px;
+
+    border-width: 1px;
+    border-style: solid;
+    border-color: #fff #ccc #999 #eee;
+
     float: right;
 }
 /**********************************************************************************************************************/
@@ -306,7 +377,9 @@ form.form_client p,
 form.form_client div.ns_left p,
 form.form_client div.ns_right p,
 form.client_edit p,
-form.account_edit p {
+form.course_edit p,
+form.account_edit p,
+#course_form p {
     width: 97%;
     padding: 5px 5px 5px 5px;
 
@@ -326,7 +399,9 @@ form.form_client input[type=text],
 form.form_client div.ns_left input[type=text],
 form.form_client div.ns_right input[type=text],
 form.client_edit input[type=text],
-form.account_edit input[type=text] {
+form.course_edit select,
+form.account_edit input[type=text],
+#course_form input[type=text] {
     width: 100%;
     padding: 5px 5px 5px 5px;
 
