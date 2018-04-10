@@ -2,6 +2,8 @@ package soap.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by EGBoldyr on 15.03.18.
@@ -33,8 +35,13 @@ public class Client implements Serializable {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Account account;
 
-    public Client() {}
+    @ManyToMany
+    @JoinTable(name = "WRITE_DOWN_COURSES",
+               joinColumns = @JoinColumn(name = "CLIENT_ID"),
+               inverseJoinColumns = @JoinColumn(name = "COURSE_ID"))
+    private List<Course> courses = new ArrayList<Course>();
 
+    public Client() {}
     public Client(String name, String surname, String phone, String email) {
         this.name = name;
         this.surname = surname;
@@ -77,6 +84,12 @@ public class Client implements Serializable {
     }
     public void setAccount(Account account) {
         this.account = account;
+    }
+    public List<Course> getCourses() {
+        return courses;
+    }
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
     }
 
     @Override
