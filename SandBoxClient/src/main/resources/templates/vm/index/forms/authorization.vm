@@ -1,8 +1,8 @@
 <fieldset>
     <legend>Authorization</legend>
-    <form onsubmit="return authorization(event)">
-        <p>Login:<input type="text" id="login"></p>
-        <p>Password:<input type="password" id="password"></p>
-        <input type="submit" value="Sign In"">
+    <form name="form" th:action="@{/login}" method="post">
+        <p>Login:<input type="text" name="username"></p>
+        <p>Password:<input type="password" name="password"></p>
+        <input id="login" type="submit" value="Sign In"">
     </form>
 </fieldset>
