@@ -4,14 +4,10 @@ function genCoursesAndGroupsInterface() {
 
 function createCourseInterface() {
     jQuery('#workspace').empty()
-        .append('<table id="courses_ui"></table>');
+        .append('<div id="courses_ui"></div>');
     jQuery('#courses_ui')
-        .append('<tbody><tr id="ui"></tr></tbody>');
-    jQuery('#ui')
-        .append('<th><table id="courses"></table></th>')
-        .append('<th><form id="course_form"></form></th>');
-
-
+        .append('<div id="courses_tab"><table id="courses"></table></div>')
+        .append('<div id="courses_form"><form id="course_form"></form></div>');
     jQuery('#courses')
         .append('<thead><tr id="header"></tr></thead>');
     jQuery('#header')
