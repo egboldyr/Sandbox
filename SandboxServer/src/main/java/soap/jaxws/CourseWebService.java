@@ -1,6 +1,6 @@
 package soap.jaxws;
 
-import soap.entity.Course;
+import soap.dto.CourseDTO;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -18,6 +18,6 @@ public interface CourseWebService {
     boolean newCourse(String title);
 
     @WebMethod
-    Course[] allCourses();
+    CourseDTO[] allCourses();
 
 }

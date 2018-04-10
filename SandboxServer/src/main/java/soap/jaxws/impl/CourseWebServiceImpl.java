@@ -1,9 +1,11 @@
 package soap.jaxws.impl;
 
+import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import soap.dto.CourseDTO;
 import soap.entity.Course;
 import soap.jaxws.CourseWebService;
 import soap.service.CourseService;
@@ -24,6 +26,9 @@ public class CourseWebServiceImpl implements CourseWebService {
     @Autowired
     private CourseService service;
 
+    @Autowired
+    private DozerBeanMapper mapper;
+
     @PostConstruct
     private void initialize() {
         log = LoggerFactory.getLogger(CourseWebServiceImpl.class);
@@ -37,8 +42,15 @@ public class CourseWebServiceImpl implements CourseWebService {
     }
 
     @Override
-    public Course[] allCourses() {
+    public CourseDTO[] allCourses() {
         log.info("Receiving all courses... START");
-        return service.findAll();
+        log.info("Receiving clients... START");
+        Course[] courses = service.findAll();
+        log.info("Receiving clients... COMPLETE");
+        CourseDTO[] body = new CourseDTO[courses.length];
+        for (int i = 0; i < courses.length; i++) {
+            body[i] = mapper.map(courses[i], CourseDTO.class);
+        }
+        return body;
     }
 }
