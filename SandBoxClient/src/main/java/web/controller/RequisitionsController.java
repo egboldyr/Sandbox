@@ -6,8 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import web.jaxws.RequisitionDTO;
+import web.jaxws.RequisitionService;
 import web.jaxws.RequisitionWebService;
-import web.jaxws.Requisition_Service;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -30,7 +30,7 @@ public class RequisitionsController {
     @PostConstruct
     private void initialize() {
         from = 0;
-        Requisition_Service requisition = new Requisition_Service();
+        RequisitionService requisition = new RequisitionService();
         requisitionWS = requisition.getRequisitionPort();
     }
 
