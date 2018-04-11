@@ -3,8 +3,8 @@ package web.service.impl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import web.jaxws.RequisitionService;
 import web.jaxws.RequisitionWebService;
-import web.jaxws.Requisition_Service;
 import web.service.RequisitionClientService;
 
 import javax.annotation.PostConstruct;
@@ -17,13 +17,12 @@ import javax.annotation.PostConstruct;
 public class RequisitionClientServiceImpl implements RequisitionClientService {
 
     private Logger log;
-    private Requisition_Service requisition;
     private RequisitionWebService requisitionWS;
 
     @PostConstruct
     private void initialize() {
         log = LoggerFactory.getLogger(RequisitionClientServiceImpl.class);
-        requisition = new Requisition_Service();
+        RequisitionService requisition = new RequisitionService();
         requisitionWS = requisition.getRequisitionPort();
     }
 
