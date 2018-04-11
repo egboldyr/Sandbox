@@ -18,7 +18,7 @@ import javax.jws.WebService;
  */
 
 @Component
-@WebService(serviceName = "Requisition", portName = "RequisitionPort", endpointInterface = "soap.jaxws.RequisitionWebService")
+@WebService(serviceName = "RequisitionService", portName = "RequisitionPort", endpointInterface = "soap.jaxws.RequisitionWebService")
 public class RequisitionWebServiceImpl implements RequisitionWebService {
 
     private Logger log;

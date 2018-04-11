@@ -19,7 +19,7 @@ import java.util.Date;
  */
 
 @Component
-@WebService(serviceName = "Group", portName = "GroupPort", endpointInterface = "soap.jaxws.GroupWebService")
+@WebService(serviceName = "GroupService", portName = "GroupPort", endpointInterface = "soap.jaxws.GroupWebService")
 public class GroupWebServiceImpl implements GroupWebService {
 
     private Logger log;

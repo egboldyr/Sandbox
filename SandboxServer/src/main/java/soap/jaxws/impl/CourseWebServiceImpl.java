@@ -18,7 +18,7 @@ import javax.jws.WebService;
  */
 
 @Component
-@WebService(serviceName = "Course", portName = "CoursePort", endpointInterface = "soap.jaxws.CourseWebService")
+@WebService(serviceName = "CourseService", portName = "CoursePort", endpointInterface = "soap.jaxws.CourseWebService")
 public class CourseWebServiceImpl implements CourseWebService {
 
     private Logger log;
