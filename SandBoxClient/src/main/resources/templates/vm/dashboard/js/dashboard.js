@@ -185,7 +185,7 @@ function getCourseData() {
         error: function (errorThrown) {
             console.log(errorThrown);
         }
-    })
+    });
 }
 
 function createCourse() {
