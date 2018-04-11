@@ -35,10 +35,8 @@ public class Client implements Serializable {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Account account;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "WRITE_DOWN_COURSES",
-               joinColumns = @JoinColumn(name = "CLIENT_ID"),
-               inverseJoinColumns = @JoinColumn(name = "COURSE_ID"))
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE}, targetEntity = Course.class)
+    @JoinTable(name = "WRITE_DOWN_COURSES", joinColumns = @JoinColumn(name = "CLIENT_ID"), inverseJoinColumns = @JoinColumn(name = "COURSE_ID"))
     private List<Course> courses = new ArrayList<Course>();
 
     public Client() {}

@@ -12,6 +12,7 @@ import soap.service.CourseService;
 
 import javax.annotation.PostConstruct;
 import javax.jws.WebService;
+import java.util.Arrays;
 
 /**
  * Created by EGBoldyr on 28.03.18.
@@ -51,13 +52,14 @@ public class CourseWebServiceImpl implements CourseWebService {
     @Override
     public CourseDTO[] allCourses() {
         log.info("Receiving all courses... START");
-        log.info("Receiving clients... START");
+        log.info("Receiving courses... START");
         Course[] courses = service.findAll();
-        log.info("Receiving clients... COMPLETE");
+        log.info("Receiving courses... COMPLETE");
         CourseDTO[] body = new CourseDTO[courses.length];
         for (int i = 0; i < courses.length; i++) {
             body[i] = mapper.map(courses[i], CourseDTO.class);
         }
+        log.info("Convert Course -> CourseDTO COMPLETE. " + courses.length + " items.");
         return body;
     }
 }

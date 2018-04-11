@@ -81,7 +81,7 @@ public class CourseDAOImpl implements CourseDAO {
             log.info("Receiving all courses...");
             List<Course> courses =
                     factory.getCurrentSession().createCriteria(Course.class).list();
-            log.info("Receiving all courses, COMPLETE.");
+            log.info("Receiving all courses, COMPLETE. Check " + courses.size() + " items.");
             return courses;
         } catch (HibernateException exc) {
             log.error("Receiving all courses, FAIL.");

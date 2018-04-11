@@ -29,8 +29,8 @@ public class Course implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "courseId", targetEntity = Group.class)
     private List<Group> groups = new ArrayList<Group>();
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "courses", cascade = CascadeType.ALL)
-    private Set<Client> clients = new HashSet<Client>();
+    @ManyToMany(mappedBy = "courses", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    private List<Client> clients = new ArrayList<Client>();
 
     public Course() {}
 
@@ -67,10 +67,10 @@ public class Course implements Serializable {
     public void setGroups(List<Group> groups) {
         this.groups = groups;
     }
-    public Set<Client> getClients() {
+    public List<Client> getClients() {
         return clients;
     }
-    public void setClients(Set<Client> clients) {
+    public void setClients(List<Client> clients) {
         this.clients = clients;
     }
 
