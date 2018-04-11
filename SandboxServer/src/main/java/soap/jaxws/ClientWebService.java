@@ -1,6 +1,7 @@
 package soap.jaxws;
 
 import soap.dto.ClientDTO;
+import soap.dto.CourseDTO;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -28,4 +29,7 @@ public interface ClientWebService {
 
     @WebMethod
     boolean writeDownClientOnCourse(Long courseId, Long clientId);
+
+    @WebMethod
+    CourseDTO[] getWriteDownCoursesByClientId(Long clientId);
 }

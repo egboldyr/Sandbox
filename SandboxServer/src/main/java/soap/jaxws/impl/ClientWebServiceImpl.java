@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import soap.dto.ClientDTO;
+import soap.dto.CourseDTO;
 import soap.entity.Client;
 import soap.entity.Course;
 import soap.jaxws.ClientWebService;
@@ -14,6 +15,7 @@ import soap.service.CourseService;
 
 import javax.annotation.PostConstruct;
 import javax.jws.WebService;
+import java.util.List;
 
 /**
  * Created by EGBoldyr on 16.03.18.
@@ -106,5 +108,18 @@ public class ClientWebServiceImpl implements ClientWebService {
         clientService.update(client);
         log.info("Write down SUCCESS!");
         return true;
+    }
+
+    @Override
+    public CourseDTO[] getWriteDownCoursesByClientId(Long clientId) {
+        log.info("Checking client... [ ID : " + clientId + "]");
+        Client client = clientService.read(clientId);
+        log.info("Checking client COMPLETE.");
+        List<Course> lst = client.getCourses();
+        CourseDTO[] courses = new CourseDTO[lst.size()];
+        for (int i = 0; i < courses.length; i++) {
+            courses[i] = mapper.map(lst.get(i), CourseDTO.class);
+        }
+        return courses;
     }
 }
