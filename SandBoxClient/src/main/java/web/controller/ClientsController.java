@@ -17,10 +17,12 @@ import java.util.List;
 @Controller
 public class ClientsController {
 
-    private static final String URL_NEW_CLIENT = "/new_client";
-    private static final String URL_NEW_ACCOUNT = "/new_account";
-    private static final String URL_UPDATE_CLIENT = "/update_client";
-    private static final String URL_PART_CLIENT = "/part_clients";
+    private static final String URL_NEW_CLIENT         = "/new_client";
+    private static final String URL_NEW_ACCOUNT        = "/new_account";
+    private static final String URL_UPDATE_CLIENT      = "/update_client";
+    private static final String URL_PART_CLIENT        = "/part_clients";
+    private static final String URL_WRITE_DOWN_CLIENT  = "/write_down";
+    private static final String URL_WRITE_DOWN_COURSES = "/write_down_courses";
 
     private Integer from;
 
@@ -93,5 +95,30 @@ public class ClientsController {
             body.add(item);
         }
         return body.toJSONString();
+    }
+
+    @RequestMapping(value = URL_WRITE_DOWN_CLIENT, method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void writeDown(@RequestParam("clientId") Long clientId, @RequestParam("courseId") Long courseId ) {
+        if (clientId != null && courseId != null) {
+            clientWS.writeDownClientOnCourse(courseId, clientId);
+        }
+    }
+
+    @RequestMapping(value = URL_WRITE_DOWN_COURSES, method = RequestMethod.POST)
+    public @ResponseBody String writeDownCourses(@RequestParam("clientId") Long clientId) {
+        if (clientId != null) {
+            List<CourseDTO> courses = clientWS.getWriteDownCoursesByClientId(clientId).getItem();
+            JSONArray body = new JSONArray();
+            for (CourseDTO course : courses) {
+                JSONObject item = new JSONObject();
+                item.put("id", course.getId());
+                item.put("title", course.getTitle());
+                body.add(item);
+            }
+            return body.toJSONString();
+        } else {
+            return null;
+        }
     }
 }
