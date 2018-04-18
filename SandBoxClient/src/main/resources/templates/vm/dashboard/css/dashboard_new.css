@@ -1,12 +1,18 @@
+/**********************************************************************************************************************/
+/**************************************** Настройки фона для основной страницы ****************************************/
+/**********************************************************************************************************************/
 body {
     background: #fafafa;
     background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa));
     background: -moz-linear-gradient(top,  #fbfbfb,  #fafafa);
 }
 /**********************************************************************************************************************/
+/************************************** Настройки бокового меню и рабочей области *************************************/
+/**********************************************************************************************************************/
 div.panel_div {
     display: block;
     width: 20%;
+    height: 100%;
     overflow: hidden;
     float: left;
 }
@@ -39,7 +45,8 @@ div.panel_div input {
     background: linear-gradient(#f5f5f5, #c1c1c1);
 }
 
-div.panel_div input:hover, div.panel_div input:focus {
+div.panel_div input:hover,
+div.panel_div input:focus {
     outline: 0;
     color: #fff;
     background: lightgreen;
@@ -72,20 +79,54 @@ div.panel_div p:last-child p {
 }
 
 /**********************************************************************************************************************/
+/*********************************** Настойки выравнивания рабочей области workspace **********************************/
+/**********************************************************************************************************************/
 div.workspace_div {
     width: 80%;
+    position: relative;
     float: right;
 }
+
+#workspace {
+    position: inherit;
+}
 /**********************************************************************************************************************/
+/********************************* Настройки выравнивания рабочей области courses_ui **********************************/
+/**********************************************************************************************************************/
+#courses_ui,
+#groups_ui {
+    width: 100%;
+}
+
 #courses_tab {
-    width: 47%;
+    width: 48%;
     float: left;
 }
 
 #courses_form {
-    width: 47%;
+    width: 48%;
     float: right;
 }
+/**********************************************************************************************************************/
+/********************************* Настройки выравнивания рабочей области groups_ui ***********************************/
+/**********************************************************************************************************************/
+#groups_view,
+#groups_tab {
+    width: 100%;
+}
+
+#groups_form {
+    width: 50%;
+    float: left;
+}
+
+#students_tab,
+#clients_tab {
+    width: 50%;
+    float: right;
+}
+/**********************************************************************************************************************/
+/***************************************** Настройки отображения всех таблиц ******************************************/
 /**********************************************************************************************************************/
 table {
     width: 100%;
@@ -167,14 +208,17 @@ table tr:hover td {
     background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0));
     background: -moz-linear-gradient(top,  #f2f2f2,  #f0f0f0);
 }
-
+/**********************************************************************************************************************/
+/******************************************** Настройки отображения кнопок ********************************************/
+/**********************************************************************************************************************/
 .process,
 #course_form input[type=button],
+#group_form input[type=button],
 form.form_client input[type=button],
 form.client_edit input[type=button],
 form.course_edit input[type=button],
 form.account_edit input[type=button] {
-    width: 100%;
+    width: 99%;
     padding: 5px;
 
     background: lightgreen;
@@ -193,6 +237,7 @@ form.account_edit input[type=button] {
 
 .process:hover,
 #course_form input[type=button]:hover,
+#group_form input[type=button]:hover,
 form.form_client input[type=button]:hover,
 form.client_edit input[type=button]:hover,
 form.course_edit input[type=button]:hover,
@@ -207,6 +252,7 @@ form.account_edit input[type=button]:hover {
 
 .process:active,
 #course_form input[type=button]:active,
+#group_form input[type=button]:active,
 form.form_client input[type=button]:active,
 form.client_edit input[type=button]:active,
 form.course_edit input[type=button]:active,
@@ -253,6 +299,8 @@ form.account_edit input[type=button]:active {
     border: solid 1px darkred;
     box-shadow: inset 0 10px 15px 0 darkred; }
 /**********************************************************************************************************************/
+/************************************* Настройки отображения навигационной панели *************************************/
+/**********************************************************************************************************************/
 .nav_pnl {
     padding: 5px;
     text-align: right;
@@ -280,8 +328,11 @@ div.nav_pnl input[type=text] {
 
     text-align: right;
 }
-
-div.nav_pnl input[type=button] {
+/**********************************************************************************************************************/
+/******************************************** Кнопки навигационных панелей ********************************************/
+/**********************************************************************************************************************/
+div.nav_pnl input[type=button],
+#prevCourses, #nextCourses {
     width: 10%;
     padding: 5px;
 
@@ -299,7 +350,8 @@ div.nav_pnl input[type=button] {
     font-size: 16px;
 }
 
-div.nav_pnl input[type=button]:hover {
+div.nav_pnl input[type=button]:hover,
+#prevCourses:hover, #nextCourses:hover {
     background: darkgreen;
     background: -webkit-gradient(linear, 0 0, 0 bottom, from(darkgreen), to(lightgreen));
     background: -moz-linear-gradient(darkgreen, lightgreen);
@@ -308,13 +360,16 @@ div.nav_pnl input[type=button]:hover {
     border-bottom: solid 3px darkgreen;
     box-shadow: inset 0 0 0 1px lightgreen; }
 
-div.nav_pnl input[type=button]:active {
+div.nav_pnl input[type=button]:active,
+#prevCourses:active, #nextCourses:active {
     background: darkgreen;
     background: -webkit-gradient(linear, 0 0, 0 bottom, from(darkgreen), to(lightgreen));
     background: -moz-linear-gradient(darkgreen, lightgreen);
     background: linear-gradient(darkgreen, lightgreen);
     border: solid 1px darkgreen;
     box-shadow: inset 0 10px 15px 0 darkgreen; }
+/**********************************************************************************************************************/
+/**************************************** Дополнительная настройка формы CLIENT ***************************************/
 /**********************************************************************************************************************/
 .client_edit {
     width: 30%;
@@ -326,6 +381,8 @@ div.nav_pnl input[type=button]:active {
 
     float: left;
 }
+/**********************************************************************************************************************/
+/**************************************** Дополнительная настройка формы COURSE ***************************************/
 /**********************************************************************************************************************/
 .course_edit {
     width: 30%;
@@ -339,6 +396,8 @@ div.nav_pnl input[type=button]:active {
 
     float: left;
 }
+/**********************************************************************************************************************/
+/*************************************** Дополнительная настройка формы ACCOUNT ***************************************/
 /**********************************************************************************************************************/
 .account_edit {
     width: 30%;
@@ -381,6 +440,8 @@ div.nav_pnl input[type=button]:active {
     clear: both;
 }
 /**********************************************************************************************************************/
+/**************************************** Настройка отображения элементов форм ****************************************/
+/**********************************************************************************************************************/
 form.form_view p,
 form.form_view label,
 form.form_client p,
@@ -389,7 +450,8 @@ form.form_client div.ns_right p,
 form.client_edit p,
 form.course_edit p,
 form.account_edit p,
-#course_form p {
+#course_form p,
+#group_form p {
     width: 97%;
     padding: 5px 5px 5px 5px;
 
@@ -411,7 +473,9 @@ form.form_client div.ns_right input[type=text],
 form.client_edit input[type=text],
 form.course_edit select,
 form.account_edit input[type=text],
-#course_form input[type=text] {
+#course_form input[type=text],
+#group_form input[type=text],
+#group_form input[type=date]{
     width: 100%;
     padding: 5px 5px 5px 5px;
 
