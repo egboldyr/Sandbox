@@ -50,6 +50,19 @@ public class CourseWebServiceImpl implements CourseWebService {
     }
 
     @Override
+    public CourseDTO[] findCoursesPart(Integer from) {
+        log.info("Receiving courses... START");
+        Course[] courses = service.findCoursesPart(from, 4);
+        log.info("Receiving courses... COMPLETE");
+        CourseDTO[] body = new CourseDTO[courses.length];
+        for (int i = 0; i < courses.length; i++) {
+            body[i] = mapper.map(courses[i], CourseDTO.class);
+        }
+        log.info("Convert Course -> CourseDTO COMPLETE. " + body.length + " items.");
+        return body;
+    }
+
+    @Override
     public CourseDTO[] allCourses() {
         log.info("Receiving all courses... START");
         log.info("Receiving courses... START");
