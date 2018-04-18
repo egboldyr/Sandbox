@@ -14,6 +14,8 @@ public interface CourseService {
 
     Course findByTitle(String title);
 
+    Course[] findCoursesPart(Integer from, Integer count);
+
     Course[] findAll();
 
 }

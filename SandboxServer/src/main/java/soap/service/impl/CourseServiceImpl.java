@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import soap.dao.CourseDAO;
@@ -57,6 +56,17 @@ public class CourseServiceImpl implements CourseService {
             return null;
         }
         return dao.findByTitle(title);
+    }
+
+    @Override
+    @Cacheable
+    public Course[] findCoursesPart(Integer from, Integer count) {
+        List<Course> list = dao.findPart(from, count);
+        Course[] courses = new Course[list.size()];
+        for (int i = 0; i < courses.length; i++) {
+            courses[i] = list.get(i);
+        }
+        return courses;
     }
 
     @Override

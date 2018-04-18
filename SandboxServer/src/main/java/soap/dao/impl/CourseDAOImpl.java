@@ -76,6 +76,23 @@ public class CourseDAOImpl implements CourseDAO {
     }
 
     @Override
+    public List<Course> findPart(Integer from, Integer count) {
+        try {
+            log.info("Receiving " + count + " courses...");
+            List<Course> courses = factory.getCurrentSession()
+                                                .createCriteria(Course.class)
+                                                .setFirstResult(from)
+                                                .setMaxResults(count)
+                                                .list();
+            log.info("Receiving " + count + " courses, COMPLETE.");
+            return courses;
+        } catch (HibernateException exc) {
+            log.error("Receiving courses, FAIL.");
+            return null;
+        }
+    }
+
+    @Override
     public List<Course> findAll() {
         try {
             log.info("Receiving all courses...");

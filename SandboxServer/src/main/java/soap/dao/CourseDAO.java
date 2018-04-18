@@ -16,6 +16,8 @@ public interface CourseDAO {
 
     Course findByTitle(String title);
 
+    List<Course> findPart(Integer from, Integer count);
+
     List<Course> findAll();
 
 }
