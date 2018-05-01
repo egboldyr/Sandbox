@@ -118,19 +118,7 @@ function nextClients() {
 
 function checkClients() {
     genClientInterface();
-    jQuery.ajax({
-        type: 'POST',
-        url: '/part_clients',
-        data: {
-            action: "UPLOAD"
-        },
-        success: function (response) {
-            processClients(response);
-        },
-        error: function (errorThrown) {
-            console.log(errorThrown);
-        }
-    });
+    checkCoursesByPart("UPLOAD");
 }
 
 function checkClientsByPart(text) {
@@ -176,9 +164,24 @@ function checkCoursesAndGroups() {
 }
 
 function getCourseData() {
+    checkCoursesByPart("UPLOAD");
+}
+
+function prevCourses() {
+    checkCoursesByPart("PREV");
+}
+
+function nextCourses() {
+    checkCoursesByPart("NEXT");
+}
+
+function checkCoursesByPart(text) {
     jQuery.ajax({
-        type: 'GET',
-        url: '/get_courses',
+        type: 'POST',
+        url: '/part_courses',
+        data: {
+            action: text
+        },
         success: function (response) {
             processCourses(response);
         },

@@ -22,7 +22,9 @@ public class CoursesController {
     private static final String URL_NEW_COURSE           = "/new_course";
     private static final String URL_FIND_COURSE_BY_TITLE = "/find_by_title_course";
     private static final String URL_GET_COURSES          = "/get_courses";
+    private static final String URL_GET_COURSES_PART     = "/part_courses";
 
+    private Integer from;
     private CourseWebService courseWS;
 
     @PostConstruct
@@ -44,6 +46,27 @@ public class CoursesController {
         item.put("id", course.getId());
         item.put("title", course.getTitle());
         return item.toJSONString();
+    }
+
+    @RequestMapping(value = URL_GET_COURSES_PART, method = RequestMethod.POST)
+    public @ResponseBody String getCoursesPart(@RequestParam("action") String action) {
+        if (action.equals("PREV") && from > 0) {
+            from -= 4;
+        } else if (action.equals("NEXT")) {
+            from += 4;
+        } else if (action.equals("UPLOAD")) {
+            from = 0;
+        }
+
+        List<CourseDTO> courses = courseWS.findCoursesPart(from).getItem();
+        JSONArray body = new JSONArray();
+        for (CourseDTO course : courses) {
+            JSONObject item = new JSONObject();
+            item.put("id", course.getId());
+            item.put("title", course.getTitle());
+            body.add(item);
+        }
+        return body.toJSONString();
     }
 
     @RequestMapping(value = URL_GET_COURSES, method = RequestMethod.GET)

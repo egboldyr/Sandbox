@@ -73,3 +73,20 @@ form input[type=submit] {
     font-family: "Arial", Serif;
     font-size: 12px;
 }
+
+form input[type=submit]:hover {
+    background: darkgreen;
+    background: -webkit-gradient(linear, 0 0, 0 bottom, from(darkgreen), to(lightgreen));
+    background: -moz-linear-gradient(darkgreen, lightgreen);
+    background: linear-gradient(darkgreen, lightgreen);
+    border: solid 1px darkgreen;
+    border-bottom: solid 3px darkgreen;
+    box-shadow: inset 0 0 0 1px lightgreen; }
+
+form input[type=submit]:active {
+    background: darkgreen;
+    background: -webkit-gradient(linear, 0 0, 0 bottom, from(darkgreen), to(lightgreen));
+    background: -moz-linear-gradient(darkgreen, lightgreen);
+    background: linear-gradient(darkgreen, lightgreen);
+    border: solid 1px darkgreen;
+    box-shadow: inset 0 10px 15px 0 darkgreen; }
