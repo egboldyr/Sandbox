@@ -10,6 +10,7 @@ function createClientsTable() {
         .append('<table id="clients">')
         .append('<div class="nav_pnl"><input type="button" value="Prev" onclick="prevClients()">' +
                                      '<input type="button" value="Next" onclick="nextClients()"></div>')
+        .append('<hr>')
         .append('<div id="forms"></div>');
     jQuery('#clients')
         .append('<caption>Clients</caption>')
