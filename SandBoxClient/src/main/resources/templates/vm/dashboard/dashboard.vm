@@ -6,6 +6,7 @@
             #include("/templates/vm/dashboard/js/requisitions.js");
             #include("/templates/vm/dashboard/js/clients.js");
             #include("/templates/vm/dashboard/js/courses.js");
+            #include("/templates/vm/dashboard/js/groups.js");
             #include("/templates/vm/dashboard/js/dashboard.js");
         </script>
         <style type="text/css">
