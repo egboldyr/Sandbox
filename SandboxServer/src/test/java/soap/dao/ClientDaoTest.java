@@ -44,7 +44,7 @@ public class ClientDaoTest {
     private ClientDAO clientDAO;
 
     @Test
-    public void createClientPositive() {
+    public void testCreateClientPositive() {
         Client client = ClientUtil.createSingleClientWithoutAccount();
 
         Long clientId = clientDAO.create(client);
@@ -55,10 +55,11 @@ public class ClientDaoTest {
         Assert.assertEquals(client.getSurname(), result.getSurname());
         Assert.assertEquals(client.getPhone(), result.getPhone());
         Assert.assertEquals(client.getEmail(), result.getEmail());
+        Assert.assertNull(result.getAccount());
     }
 
     @Test
-    public void updateClientPositive() {
+    public void testUpdateClientPositive() {
         Client client = ClientUtil.createSingleClientWithoutAccount();
 
         Long clientId = clientDAO.create(client);
@@ -76,11 +77,12 @@ public class ClientDaoTest {
         Assert.assertEquals(updateData.getSurname(), result.getSurname());
         Assert.assertEquals(updateData.getPhone(), result.getPhone());
         Assert.assertEquals(updateData.getEmail(), result.getEmail());
+        Assert.assertNull(result.getAccount());
     }
 
     @Test
     @Ignore /** Пока что не реализован метод удаления клиента */
-    public void deleteClientPositive() {
+    public void testDeleteClientPositive() {
         Client client = ClientUtil.createSingleClientWithoutAccount();
         Long clientId = clientDAO.create(client);
 
@@ -91,7 +93,7 @@ public class ClientDaoTest {
     }
 
     @Test
-    public void findPaginationClientsPositive() {
+    public void testFindPaginationClientsPositive() {
         List<Client> clients = ClientUtil.createClientsList();
         for (Client c : clients) {
             clientDAO.create(c);

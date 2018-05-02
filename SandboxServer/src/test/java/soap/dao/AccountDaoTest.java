@@ -46,7 +46,7 @@ public class AccountDaoTest {
     private ClientDAO clientDAO;
 
     @Test
-    public void createAccountWithoutClientPositive() {
+    public void testCreateAccountWithoutClientPositive() {
         Account account = AccountUtil.createSingleAccountWithoutClient();
         accountDAO.create(account);
 
@@ -54,10 +54,11 @@ public class AccountDaoTest {
 
         Assert.assertEquals(account.getLogin(), result.getLogin());
         Assert.assertEquals(account.getPassword(), result.getPassword());
+        Assert.assertNull(result.getClient());
     }
 
     @Test
-    public void createAccountWithClientPositive() {
+    public void testCreateAccountWithClientPositive() {
         Client client = ClientUtil.createSingleClientWithoutAccount();
         clientDAO.create(client);
 
@@ -72,12 +73,15 @@ public class AccountDaoTest {
     }
 
     @Test
-    public void getAccountByLoginPositive() {
+    public void testGetAccountByLoginPositive() {
         Account account = AccountUtil.createSingleAccountWithoutClient();
-        accountDAO.create(account);
+        Long id = accountDAO.create(account);
 
         Account result = accountDAO.getByLogin(account.getLogin());
 
+        Assert.assertEquals(id, result.getId());
         Assert.assertEquals(account.getLogin(), result.getLogin());
+        Assert.assertEquals(account.getPassword(), result.getPassword());
+        Assert.assertNull(account.getClient());
     }
 }
