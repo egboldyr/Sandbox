@@ -76,7 +76,104 @@
             <version>5.5.1</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>1.5.9.RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>4.3.10.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
 
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxws-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>AccountWebService</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>wsgen</goal>
+                        </goals>
+                        <configuration>
+                            <sei>soap.jaxws.impl.AccountWebServiceImpl</sei>
+                            <genWsdl>true</genWsdl>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>ClientWebService</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>wsgen</goal>
+                        </goals>
+                        <configuration>
+                            <sei>soap.jaxws.impl.ClientWebServiceImpl</sei>
+                            <genWsdl>true</genWsdl>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>CourseWebService</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>wsgen</goal>
+                        </goals>
+                        <configuration>
+                            <sei>soap.jaxws.impl.CourseWebServiceImpl</sei>
+                            <genWsdl>true</genWsdl>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>GroupWebService</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>wsgen</goal>
+                        </goals>
+                        <configuration>
+                            <sei>soap.jaxws.impl.GroupWebServiceImpl</sei>
+                            <genWsdl>true</genWsdl>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>RequisitionWebService</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>wsgen</goal>
+                        </goals>
+                        <configuration>
+                            <sei>soap.jaxws.impl.RequisitionWebServiceImpl</sei>
+                            <genWsdl>true</genWsdl>
+                        </configuration>
+                    </execution>
+                </executions>
+
+                <configuration>
+                    <keep>true</keep>
+                    <verbose>true</verbose>
+                    <resourceDestDir>${project.basedir}/src/main/resources/wsdl</resourceDestDir>
+                    <destDir>${project.build.outputDirectory}</destDir>
+                </configuration>
+
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
