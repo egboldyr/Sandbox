@@ -36,7 +36,7 @@ public class GroupWebServiceImpl implements GroupWebService {
     @PostConstruct
     private void initialize() {
         log = LoggerFactory.getLogger(GroupWebServiceImpl.class);
-        sdf = new SimpleDateFormat("dd.MM.yyyy");
+        sdf = new SimpleDateFormat("yyyy-MM-dd");
         log.info("Initialize - Group service...");
     }
 
