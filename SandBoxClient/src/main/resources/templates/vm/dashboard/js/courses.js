@@ -5,6 +5,7 @@ function genCoursesAndGroupsInterface() {
 function createCourseInterface() {
     jQuery('#workspace').empty()
         .append('<p><span id="courses_ui"></span></p>')
+        .append('<p><hr></p>')
         .append('<p><span id="groups_ui"></span></p>');
 
     /* Интерфейс для работы с курсами (Добавление новых курсов)*/
@@ -34,12 +35,13 @@ function createCourseInterface() {
         .append('<div id="groups_tab"><table id="groups"></table></div>')
         .append('<div id="groups_form"><form id="group_form"></form></div>');
 
-    jQuery('#group_students')
-        .append('<div id="students_tab"><table id="students"></table></div>')
-        .append('<div id="clients_tab"><table id="clients"></table></div>');
+    // jQuery('#group_students')
+    //     .append('<div id="students_tab"><table id="students"></table></div>')
+    //     .append('<div id="clients_tab"><table id="clients"></table></div>');
 
     /*Интерфейс добавления/изменения групп (Создание группы и редактирование основной информации)*/
     jQuery('#groups')
+        .append('<caption>GROUPS</caption>')
         .append('<thead><tr id="grp_header"></tr></thead>')
         .append('<tbody id="tblGroupsBody"></tbody>');
     jQuery('#grp_header')
@@ -49,7 +51,7 @@ function createCourseInterface() {
         .append('<th>END_DATE</th>')
         .append('<th>ACTIONS</th>');
 
-    for (var i = 0; i < 5; i++) {
+    for (var i = 0; i < 10; i++) {
         jQuery('#tblGroupsBody')
             .append('<tr id="cur_row' + i + '" class="item"></tr>');
         jQuery('#cur_row' + i)
@@ -68,43 +70,43 @@ function createCourseInterface() {
         .append('<input type="button" value="Add" onclick="return createNewGroup()">');
 
     /*Интерфейс добавления/удаления студентов (Формирование групп на основе существующих заявок)*/
-    jQuery('#students')
-        .append('<thead><tr id="std_header"></tr></thead>')
-        .append('<tbody id="tblStudentsBody"></tbody>');
-    jQuery('#std_header')
-        .append('<th>ID</th>')
-        .append('<th>NAME</th>')
-        .append('<th>SURNAME</th>')
-        .append('<th>ACTIONS</th>');
-
-    for (var i = 0; i < 5; i++) {
-        jQuery('#tblStudentsBody')
-            .append('<tr id="cur_student_row' + i + '" class="item"></tr>');
-        jQuery('#cur_student_row' + i)
-            .append('<td id="student_id">-</td>')
-            .append('<td id="student_name">-</td>')
-            .append('<td id="student_surname">-</td>')
-            .append('<td id="student_action">-</td>');
-    }
-
-    jQuery('#clients')
-        .append('<thead><tr id="clt_header"></tr></thead>')
-        .append('<tbody id="tblClientsBody"></tbody>');
-    jQuery('#clt_header')
-        .append('<th>ID</th>')
-        .append('<th>NAME</th>')
-        .append('<th>SURNAME</th>')
-        .append('<th>ACTIONS</th>');
-
-    for (var i = 0; i < 5; i++) {
-        jQuery('#tblClientsBody')
-            .append('<tr id="cur_client_row' + i + '" class="item"></tr>');
-        jQuery('#cur_client_row' + i)
-            .append('<td id="client_id">-</td>')
-            .append('<td id="client_name">-</td>')
-            .append('<td id="client_surname">-</td>')
-            .append('<td id="client_action">-</td>');
-    }
+    // jQuery('#students')
+    //     .append('<thead><tr id="std_header"></tr></thead>')
+    //     .append('<tbody id="tblStudentsBody"></tbody>');
+    // jQuery('#std_header')
+    //     .append('<th>ID</th>')
+    //     .append('<th>NAME</th>')
+    //     .append('<th>SURNAME</th>')
+    //     .append('<th>ACTIONS</th>');
+    //
+    // for (var i = 0; i < 5; i++) {
+    //     jQuery('#tblStudentsBody')
+    //         .append('<tr id="cur_student_row' + i + '" class="item"></tr>');
+    //     jQuery('#cur_student_row' + i)
+    //         .append('<td id="student_id">-</td>')
+    //         .append('<td id="student_name">-</td>')
+    //         .append('<td id="student_surname">-</td>')
+    //         .append('<td id="student_action">-</td>');
+    // }
+    //
+    // jQuery('#clients')
+    //     .append('<thead><tr id="clt_header"></tr></thead>')
+    //     .append('<tbody id="tblClientsBody"></tbody>');
+    // jQuery('#clt_header')
+    //     .append('<th>ID</th>')
+    //     .append('<th>NAME</th>')
+    //     .append('<th>SURNAME</th>')
+    //     .append('<th>ACTIONS</th>');
+    //
+    // for (var i = 0; i < 5; i++) {
+    //     jQuery('#tblClientsBody')
+    //         .append('<tr id="cur_client_row' + i + '" class="item"></tr>');
+    //     jQuery('#cur_client_row' + i)
+    //         .append('<td id="client_id">-</td>')
+    //         .append('<td id="client_name">-</td>')
+    //         .append('<td id="client_surname">-</td>')
+    //         .append('<td id="client_action">-</td>');
+    // }
 }
 
 function processCourses(jsonResult) {
@@ -116,17 +118,14 @@ function processCourses(jsonResult) {
     for (var i = 0; i < result.length; i++) {
         jQuery('#tblBody').append('<tr id="cur_row' + i + '" class="item"></tr>');
         jQuery('#cur_row' + i)
-            .append('<td id="crs_id">' + result[i].id + '</td>')
-            .append('<td id="crs_title">' + result[i].title + '</td>')
+            .append('<td id="cr_id">' + result[i].id + '</td>')
+            .append('<td id="cr_title">' + result[i].title + '</td>')
             .append('<td id="crs_groups"><input class="process" type="button" value="View groups" onclick="return viewGroups(this)"></td>');
     }
 }
 
 function viewGroups(btn) {
     var course = btn.parentNode.parentNode;
-    /*crs_id crs_title*/
-}
-
-function createNewGroup() {
-    
+    jQuery('#crs_id').val(jQuery(course).find("#cr_id").html());
+    jQuery('#crs_title').val(jQuery(course).find("#cr_title").html());
 }
