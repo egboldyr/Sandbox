@@ -1,6 +1,6 @@
 package soap.jaxws;
 
-import soap.entity.Group;
+import soap.dto.GroupDTO;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -18,8 +18,8 @@ public interface GroupWebService {
     boolean newGroup(String courseId, String title, String beginDate, String endDate);
 
     @WebMethod
-    Group[] byActualDate(String actualDate);
+    GroupDTO[] byActualDate(String actualDate);
 
     @WebMethod
-    Group[] allGroups();
+    GroupDTO[] allGroups();
 }
