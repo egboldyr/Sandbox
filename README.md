@@ -3,7 +3,7 @@
 Simple web-application to automate the reception and the recording of 
 new customers for courses.
 
-Technologies stack
+# Technologies stack
 
 BackEnd:
 - Java SE, JavaEE.
