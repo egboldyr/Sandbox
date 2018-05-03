@@ -84,6 +84,26 @@ public class GroupWebServiceImpl implements GroupWebService {
     }
 
     @Override
+    public GroupDTO[] byCourseId(String courseId) {
+        try {
+            log.info("Receiving groups for Course [" + courseId + "]... START");
+            Group[] groups = service.findGroupsByCourseId(Long.parseLong(courseId));
+            GroupDTO[] body = new GroupDTO[groups.length];
+
+            for (int i = 0; i < groups.length; i++) {
+                body[i] = mapper.map(groups[i], GroupDTO.class);
+            }
+
+            log.info("Convert Group -> GroupDTO COMPLETE." + body.length + " items");
+
+            return body;
+        } catch (NumberFormatException exc) {
+            log.error("Error : " + exc.getMessage());
+            return null;
+        }
+    }
+
+    @Override
     public GroupDTO[] allGroups() {
         log.info("Receiving all groups... START");
         Group[] groups = service.findAll();
