@@ -1,6 +1,7 @@
 package soap.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -9,14 +10,14 @@ import java.util.Date;
 
 @Entity
 @Table(name = "GROUPS")
-public class Group {
+public class Group implements Serializable {
 
     @Id
     @SequenceGenerator(name = "groupId", sequenceName = "seq_group_id", initialValue = 21180000, allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "groupId")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Course.class)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = Course.class)
     @JoinColumn(name = "courseId", nullable = false)
     private Course courseId;
 
