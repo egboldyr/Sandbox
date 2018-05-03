@@ -65,6 +65,17 @@ public class GroupServiceImpl implements GroupService {
 
     @Cacheable
     @Override
+    public Group[] findGroupsByCourseId(Long courseId) {
+        List<Group> list = groupDAO.findAllByCourseId(courseId);
+        Group[] groups = new Group[list.size()];
+        for (int i = 0; i < groups.length; i++) {
+            groups[i] = list.get(i);
+        }
+        return groups;
+    }
+
+    @Cacheable
+    @Override
     public Group[] findAll() {
         List<Group> list = groupDAO.findAll();
         Group[] groups = new Group[list.size()];

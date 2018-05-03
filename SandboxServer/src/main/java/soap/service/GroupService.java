@@ -14,6 +14,8 @@ public interface GroupService {
 
     Group[] findGroupsByActualDate(Date actualDate);
 
+    Group[] findGroupsByCourseId(Long courseId);
+
     Group[] findAll();
 
 }

@@ -19,6 +19,8 @@ public interface GroupDAO {
 
     List<Group> findAllByActualDate(Date actualDate);
 
+    List<Group> findAllByCourseId(Long courseId);
+
     List<Group> findAll();
 
 }

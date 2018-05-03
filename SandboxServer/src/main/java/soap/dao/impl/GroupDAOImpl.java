@@ -91,6 +91,22 @@ public class GroupDAOImpl implements GroupDAO {
     }
 
     @Override
+    public List<Group> findAllByCourseId(Long courseId) {
+        try {
+            log.info("Receiving all groups for Course [ID: " + courseId + "]");
+            List<Group> groups = factory.getCurrentSession()
+                                            .createCriteria(Group.class)
+                                            .add(Restrictions.eq("courseId", courseId))
+                                            .list();
+            log.info("Receiving groups... COMPLETE. Find " + groups.size() + " groups.");
+            return groups;
+        } catch (HibernateException exc) {
+            log.error("Receiving groups, FAIL.");
+            return null;
+        }
+    }
+
+    @Override
     public List<Group> findAll() {
         try {
             log.info("Receiving all groups...");
