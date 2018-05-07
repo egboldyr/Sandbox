@@ -1,6 +1,5 @@
 package soap.jaxws.impl;
 
-import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +8,10 @@ import soap.dto.CourseDTO;
 import soap.entity.Course;
 import soap.jaxws.CourseWebService;
 import soap.service.CourseService;
+import soap.util.CoursesMapper;
 
 import javax.annotation.PostConstruct;
 import javax.jws.WebService;
-import java.util.Arrays;
 
 /**
  * Created by EGBoldyr on 28.03.18.
@@ -28,7 +27,7 @@ public class CourseWebServiceImpl implements CourseWebService {
     private CourseService service;
 
     @Autowired
-    private DozerBeanMapper mapper;
+    private CoursesMapper mapper;
 
     @PostConstruct
     private void initialize() {
@@ -46,7 +45,7 @@ public class CourseWebServiceImpl implements CourseWebService {
     public CourseDTO findByTitle(String title) {
         log.info("Starting find course by TITLE option...");
         Course course = service.findByTitle(title);
-        return mapper.map(course, CourseDTO.class);
+        return mapper.courseToCourseDto(course);
     }
 
     @Override
@@ -56,7 +55,7 @@ public class CourseWebServiceImpl implements CourseWebService {
         log.info("Receiving courses... COMPLETE");
         CourseDTO[] body = new CourseDTO[courses.length];
         for (int i = 0; i < courses.length; i++) {
-            body[i] = mapper.map(courses[i], CourseDTO.class);
+            body[i] = mapper.courseToCourseDto(courses[i]);
         }
         log.info("Convert Course -> CourseDTO COMPLETE. " + body.length + " items.");
         return body;
@@ -70,7 +69,7 @@ public class CourseWebServiceImpl implements CourseWebService {
         log.info("Receiving courses... COMPLETE");
         CourseDTO[] body = new CourseDTO[courses.length];
         for (int i = 0; i < courses.length; i++) {
-            body[i] = mapper.map(courses[i], CourseDTO.class);
+            body[i] = mapper.courseToCourseDto(courses[i]);
         }
         log.info("Convert Course -> CourseDTO COMPLETE. " + courses.length + " items.");
         return body;
