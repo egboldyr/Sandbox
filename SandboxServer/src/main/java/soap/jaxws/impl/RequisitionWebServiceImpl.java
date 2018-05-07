@@ -1,6 +1,5 @@
 package soap.jaxws.impl;
 
-import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +8,7 @@ import soap.dto.RequisitionDTO;
 import soap.entity.Requisition;
 import soap.jaxws.RequisitionWebService;
 import soap.service.RequisitionService;
+import soap.util.RequisitionsMapper;
 
 import javax.annotation.PostConstruct;
 import javax.jws.WebService;
@@ -27,7 +27,7 @@ public class RequisitionWebServiceImpl implements RequisitionWebService {
     private RequisitionService service;
 
     @Autowired
-    private DozerBeanMapper mapper;
+    private RequisitionsMapper mapper;
 
     @PostConstruct
     private void initialize() {
@@ -53,7 +53,7 @@ public class RequisitionWebServiceImpl implements RequisitionWebService {
         Requisition[] requisitions = service.getRequisitions(from, count);
         RequisitionDTO[] body = new RequisitionDTO[requisitions.length];
         for (int i = 0; i < requisitions.length; i++) {
-            body[i] = mapper.map(requisitions[i], RequisitionDTO.class);
+            body[i] = mapper.requisitionToRequisitionDto(requisitions[i]);
         }
         return body;
     }
@@ -64,7 +64,7 @@ public class RequisitionWebServiceImpl implements RequisitionWebService {
         Requisition[] requisitions = service.findAll();
         RequisitionDTO[] body = new RequisitionDTO[requisitions.length];
         for (int i = 0; i < requisitions.length; i++) {
-            body[i] = mapper.map(requisitions[i], RequisitionDTO.class);
+            body[i] = mapper.requisitionToRequisitionDto(requisitions[i]);
         }
         return body;
     }
