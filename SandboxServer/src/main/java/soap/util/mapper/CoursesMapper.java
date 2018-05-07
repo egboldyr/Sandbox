@@ -1,4 +1,4 @@
-package soap.util;
+package soap.util.mapper;
 
 import org.mapstruct.Mapper;
 import soap.dto.CourseDTO;

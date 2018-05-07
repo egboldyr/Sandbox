@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import soap.dto.GroupDTO;
 import soap.jaxws.GroupWebService;
 import soap.service.GroupService;
-import soap.util.GroupsMapper;
+import soap.util.mapper.GroupsMapper;
 
 import javax.annotation.PostConstruct;
 import javax.jws.WebService;

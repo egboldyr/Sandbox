@@ -8,7 +8,7 @@ import soap.dto.RequisitionDTO;
 import soap.entity.Requisition;
 import soap.jaxws.RequisitionWebService;
 import soap.service.RequisitionService;
-import soap.util.RequisitionsMapper;
+import soap.util.mapper.RequisitionsMapper;
 
 import javax.annotation.PostConstruct;
 import javax.jws.WebService;

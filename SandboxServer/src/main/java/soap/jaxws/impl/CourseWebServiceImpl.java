@@ -8,7 +8,7 @@ import soap.dto.CourseDTO;
 import soap.entity.Course;
 import soap.jaxws.CourseWebService;
 import soap.service.CourseService;
-import soap.util.CoursesMapper;
+import soap.util.mapper.CoursesMapper;
 
 import javax.annotation.PostConstruct;
 import javax.jws.WebService;

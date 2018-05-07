@@ -11,12 +11,11 @@ import soap.entity.Course;
 import soap.jaxws.ClientWebService;
 import soap.service.ClientService;
 import soap.service.CourseService;
-import soap.util.ClientsMapper;
-import soap.util.CoursesMapper;
+import soap.util.mapper.ClientsMapper;
+import soap.util.mapper.CoursesMapper;
 
 import javax.annotation.PostConstruct;
 import javax.jws.WebService;
-import java.util.List;
 
 /**
  * Created by EGBoldyr on 16.03.18.
