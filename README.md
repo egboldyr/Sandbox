@@ -9,6 +9,7 @@ BackEnd:
 - Java SE, JavaEE.
 - Hibernate, Spring (Boot, Security).
 - Tomcat 8.0, Apache Velocity, JAX-WS (SOAP & WSDL).
+- MapStruct 1.2.0
 
 DB: 
 - MySQL 5.7.22.
