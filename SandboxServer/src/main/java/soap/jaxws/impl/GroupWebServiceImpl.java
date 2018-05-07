@@ -1,14 +1,13 @@
 package soap.jaxws.impl;
 
-import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import soap.dto.GroupDTO;
-import soap.entity.Group;
 import soap.jaxws.GroupWebService;
 import soap.service.GroupService;
+import soap.util.GroupsMapper;
 
 import javax.annotation.PostConstruct;
 import javax.jws.WebService;
@@ -31,7 +30,7 @@ public class GroupWebServiceImpl implements GroupWebService {
     private GroupService service;
 
     @Autowired
-    private DozerBeanMapper mapper;
+    private GroupsMapper mapper;
 
     @PostConstruct
     private void initialize() {
@@ -66,17 +65,8 @@ public class GroupWebServiceImpl implements GroupWebService {
             log.info("Checking [ACTUAL_DATE: " + actualDate + "]");
             Date actual = sdf.parse(actualDate);
             log.info("Checking COMPLETE.");
-
-            Group[] groups = service.findGroupsByActualDate(actual);
-            GroupDTO[] body = new GroupDTO[groups.length];
-
-            for (int i = 0; i < groups.length; i++) {
-                body[i] = mapper.map(groups[i], GroupDTO.class);
-            }
-
-            log.info("Convert Group -> GroupDTO COMPLETE." + body.length + " items");
-
-            return body;
+            return mapper.groupsArrayToGroupDtoArray(
+                    service.findGroupsByActualDate(actual));
         } catch (ParseException exc) {
             log.error("Error : " + exc.getMessage());
             return null;
@@ -87,16 +77,8 @@ public class GroupWebServiceImpl implements GroupWebService {
     public GroupDTO[] byCourseId(String courseId) {
         try {
             log.info("Receiving groups for Course [" + courseId + "]... START");
-            Group[] groups = service.findGroupsByCourseId(Long.parseLong(courseId));
-            GroupDTO[] body = new GroupDTO[groups.length];
-
-            for (int i = 0; i < groups.length; i++) {
-                body[i] = mapper.map(groups[i], GroupDTO.class);
-            }
-
-            log.info("Convert Group -> GroupDTO COMPLETE." + body.length + " items");
-
-            return body;
+            return mapper.groupsArrayToGroupDtoArray(
+                    service.findGroupsByCourseId(Long.parseLong(courseId)));
         } catch (NumberFormatException exc) {
             log.error("Error : " + exc.getMessage());
             return null;
@@ -106,15 +88,6 @@ public class GroupWebServiceImpl implements GroupWebService {
     @Override
     public GroupDTO[] allGroups() {
         log.info("Receiving all groups... START");
-        Group[] groups = service.findAll();
-        GroupDTO[] body = new GroupDTO[groups.length];
-
-        for (int i = 0; i < groups.length; i++) {
-            body[i] = mapper.map(groups[i], GroupDTO.class);
-        }
-
-        log.info("Convert Group -> GroupDTO COMPLETE." + body.length + " items");
-
-        return body;
+        return mapper.groupsArrayToGroupDtoArray(service.findAll());
     }
 }
