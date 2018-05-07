@@ -1,6 +1,5 @@
 package soap.jaxws.impl;
 
-import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +8,7 @@ import soap.dto.GroupDTO;
 import soap.entity.Group;
 import soap.jaxws.GroupWebService;
 import soap.service.GroupService;
+import soap.util.GroupsMapper;
 
 import javax.annotation.PostConstruct;
 import javax.jws.WebService;
@@ -31,7 +31,7 @@ public class GroupWebServiceImpl implements GroupWebService {
     private GroupService service;
 
     @Autowired
-    private DozerBeanMapper mapper;
+    private GroupsMapper mapper;
 
     @PostConstruct
     private void initialize() {
@@ -71,7 +71,7 @@ public class GroupWebServiceImpl implements GroupWebService {
             GroupDTO[] body = new GroupDTO[groups.length];
 
             for (int i = 0; i < groups.length; i++) {
-                body[i] = mapper.map(groups[i], GroupDTO.class);
+                body[i] = mapper.groupToGroupDTO(groups[i]);
             }
 
             log.info("Convert Group -> GroupDTO COMPLETE." + body.length + " items");
@@ -91,7 +91,7 @@ public class GroupWebServiceImpl implements GroupWebService {
             GroupDTO[] body = new GroupDTO[groups.length];
 
             for (int i = 0; i < groups.length; i++) {
-                body[i] = mapper.map(groups[i], GroupDTO.class);
+                body[i] = mapper.groupToGroupDTO(groups[i]);
             }
 
             log.info("Convert Group -> GroupDTO COMPLETE." + body.length + " items");
@@ -110,7 +110,7 @@ public class GroupWebServiceImpl implements GroupWebService {
         GroupDTO[] body = new GroupDTO[groups.length];
 
         for (int i = 0; i < groups.length; i++) {
-            body[i] = mapper.map(groups[i], GroupDTO.class);
+            body[i] = mapper.groupToGroupDTO(groups[i]);
         }
 
         log.info("Convert Group -> GroupDTO COMPLETE." + body.length + " items");
