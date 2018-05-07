@@ -53,12 +53,7 @@ public class CourseWebServiceImpl implements CourseWebService {
         log.info("Receiving courses... START");
         Course[] courses = service.findCoursesPart(from, 4);
         log.info("Receiving courses... COMPLETE");
-        CourseDTO[] body = new CourseDTO[courses.length];
-        for (int i = 0; i < courses.length; i++) {
-            body[i] = mapper.courseToCourseDto(courses[i]);
-        }
-        log.info("Convert Course -> CourseDTO COMPLETE. " + body.length + " items.");
-        return body;
+        return mapper.coursesArrayToCourseDtoArray(courses);
     }
 
     @Override
@@ -67,11 +62,6 @@ public class CourseWebServiceImpl implements CourseWebService {
         log.info("Receiving courses... START");
         Course[] courses = service.findAll();
         log.info("Receiving courses... COMPLETE");
-        CourseDTO[] body = new CourseDTO[courses.length];
-        for (int i = 0; i < courses.length; i++) {
-            body[i] = mapper.courseToCourseDto(courses[i]);
-        }
-        log.info("Convert Course -> CourseDTO COMPLETE. " + courses.length + " items.");
-        return body;
+        return mapper.coursesArrayToCourseDtoArray(courses);
     }
 }

@@ -51,21 +51,13 @@ public class RequisitionWebServiceImpl implements RequisitionWebService {
     public RequisitionDTO[] getRequisitions(Integer from, Integer count) {
         log.info("Receiving " + count + " requisitions... START");
         Requisition[] requisitions = service.getRequisitions(from, count);
-        RequisitionDTO[] body = new RequisitionDTO[requisitions.length];
-        for (int i = 0; i < requisitions.length; i++) {
-            body[i] = mapper.requisitionToRequisitionDto(requisitions[i]);
-        }
-        return body;
+        return mapper.requitionsArrayToRequisitionDtoArray(requisitions);
     }
 
     @Override
     public RequisitionDTO[] allRequisitions() {
         log.info("Receiving all requisitions... START");
         Requisition[] requisitions = service.findAll();
-        RequisitionDTO[] body = new RequisitionDTO[requisitions.length];
-        for (int i = 0; i < requisitions.length; i++) {
-            body[i] = mapper.requisitionToRequisitionDto(requisitions[i]);
-        }
-        return body;
+        return mapper.requitionsArrayToRequisitionDtoArray(requisitions);
     }
 }

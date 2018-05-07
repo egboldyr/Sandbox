@@ -15,4 +15,6 @@ public interface ClientsMapper {
     @Mapping(target = "account", source = "account.login")
     ClientDTO clientToClientDto(Client client);
 
+    ClientDTO[] clientsArrayToClientDtoArray(Client[] clients);
+
 }

@@ -1,6 +1,5 @@
 package soap.jaxws.impl;
 
-import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +11,8 @@ import soap.entity.Course;
 import soap.jaxws.ClientWebService;
 import soap.service.ClientService;
 import soap.service.CourseService;
+import soap.util.ClientsMapper;
+import soap.util.CoursesMapper;
 
 import javax.annotation.PostConstruct;
 import javax.jws.WebService;
@@ -34,7 +35,10 @@ public class ClientWebServiceImpl implements ClientWebService {
     private CourseService courseService;
 
     @Autowired
-    private DozerBeanMapper mapper;
+    private ClientsMapper clientsMapper;
+
+    @Autowired
+    private CoursesMapper coursesMapper;
 
     @PostConstruct
     private void initialize() {
@@ -84,11 +88,7 @@ public class ClientWebServiceImpl implements ClientWebService {
         log.info("Receiving clients... START");
         Client[] clients = clientService.findClientsPart(from, 10);
         log.info("Receiving clients... COMPLETE");
-        ClientDTO[] body = new ClientDTO[clients.length];
-        for (int i = 0; i < clients.length; i++) {
-            body[i] = mapper.map(clients[i], ClientDTO.class);
-        }
-        return body;
+        return clientsMapper.clientsArrayToClientDtoArray(clients);
     }
 
     @Override
@@ -115,11 +115,6 @@ public class ClientWebServiceImpl implements ClientWebService {
         log.info("Checking client... [ ID : " + clientId + "]");
         Client client = clientService.read(clientId);
         log.info("Checking client COMPLETE.");
-        List<Course> lst = client.getCourses();
-        CourseDTO[] courses = new CourseDTO[lst.size()];
-        for (int i = 0; i < courses.length; i++) {
-            courses[i] = mapper.map(lst.get(i), CourseDTO.class);
-        }
-        return courses;
+        return coursesMapper.coursesListToCourseDtoArray(client.getCourses());
     }
 }

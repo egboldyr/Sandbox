@@ -12,4 +12,6 @@ import soap.entity.Group;
 public interface GroupsMapper {
 
     GroupDTO groupToGroupDTO(Group group);
+
+    GroupDTO[] groupsArrayToGroupDtoArray(Group[] groups);
 }

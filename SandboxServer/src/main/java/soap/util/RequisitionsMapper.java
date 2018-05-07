@@ -13,4 +13,5 @@ public interface RequisitionsMapper {
 
     RequisitionDTO requisitionToRequisitionDto(Requisition requisition);
 
+    RequisitionDTO[] requitionsArrayToRequisitionDtoArray(Requisition[] requisitions);
 }
