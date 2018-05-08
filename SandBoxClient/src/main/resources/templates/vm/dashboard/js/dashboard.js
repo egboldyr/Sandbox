@@ -223,12 +223,35 @@ function createNewGroup() {
             end_date:   jQuery('#grp_end').val()
         },
         success: function () {
+            jQuery('#grp_title').val('');
+            jQuery('#grp_begin').val('');
+            jQuery('#grp_end').val('');
             checkGroups();
         }
     });
 }
 
 function checkGroups() {
+    jQuery.ajax({
+        type: 'POST',
+        url: '/get_groups_by_course_id',
+        data: {
+            course_id: jQuery('#crs_id').val()
+        },
+        success: function (response) {
+            processGroups(response);
+        },
+        error: function (errorThrown) {
+            console.log(errorThrown);
+        }
+    });
+}
+
+function editGroup(btn) {
+
+}
+
+function closeGroup(btn) {
 
 }
 /**********************************************************************************************************************/
