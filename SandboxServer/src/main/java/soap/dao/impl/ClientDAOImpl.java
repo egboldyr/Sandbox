@@ -1,8 +1,11 @@
 package soap.dao.impl;
 
+import org.hibernate.FetchMode;
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.CriteriaSpecification;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,9 +89,10 @@ public class ClientDAOImpl implements ClientDAO {
             log.info("Receiving " + count + " clients...");
             List<Client> clients = factory.getCurrentSession()
                                                 .createCriteria(Client.class)
+                                                .setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY)
+                                                .setFetchMode("courses", FetchMode.LAZY)
                                                 .setFirstResult(from)
                                                 .setMaxResults(count)
-                                                .setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY)
                                                 .list();
             log.info("Receiving " + count + " clients, COMPLETE.");
             return clients;

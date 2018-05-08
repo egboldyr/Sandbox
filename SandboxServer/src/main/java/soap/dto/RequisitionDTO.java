@@ -1,11 +1,8 @@
 package soap.dto;
 
-import soap.entity.enums.RequisitionStatus;
-
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * Created by EGBoldyr on 04.04.18.

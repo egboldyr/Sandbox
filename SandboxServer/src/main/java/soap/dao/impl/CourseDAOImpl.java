@@ -1,7 +1,9 @@
 package soap.dao.impl;
 
+import org.hibernate.FetchMode;
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.CriteriaSpecification;
 import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,6 +44,7 @@ public class CourseDAOImpl implements CourseDAO {
         } catch (HibernateException exc) {
             factory.getCurrentSession().getTransaction().rollback();
             log.error("Creating course FAIL.");
+            log.error("Error : " + exc.getMessage());
             return null;
         }
     }
@@ -55,7 +58,22 @@ public class CourseDAOImpl implements CourseDAO {
             return course;
         } catch (HibernateException exc) {
             log.error("Reading course... FAIL. Incorrect [ID : " + id + "]");
+            log.error("Error : " + exc.getMessage());
             return null;
+        }
+    }
+
+    @Override
+    public boolean update(Course course) {
+        try {
+            log.info("Updating course... [ ID: " + course.getId() + "]");
+            factory.getCurrentSession().update(course);
+            return true;
+        } catch (HibernateException exc) {
+            factory.getCurrentSession().getTransaction().rollback();
+            log.error("Updating course... FAIL. Incorrect [ID : " + course.getId() + "]");
+            log.error("Error : " + exc.getMessage());
+            return false;
         }
     }
 
@@ -71,6 +89,7 @@ public class CourseDAOImpl implements CourseDAO {
             return course;
         } catch (HibernateException exc) {
             log.error("Reading course... FAIL. Incorrect [TITLE : " + title + "]");
+            log.error("Error : " + exc.getMessage());
             return null;
         }
     }
@@ -81,6 +100,7 @@ public class CourseDAOImpl implements CourseDAO {
             log.info("Receiving " + count + " courses...");
             List<Course> courses = factory.getCurrentSession()
                                                 .createCriteria(Course.class)
+                                                .setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY)
                                                 .setFirstResult(from)
                                                 .setMaxResults(count)
                                                 .list();
@@ -88,6 +108,7 @@ public class CourseDAOImpl implements CourseDAO {
             return courses;
         } catch (HibernateException exc) {
             log.error("Receiving courses, FAIL.");
+            log.error("Error : " + exc.getMessage());
             return null;
         }
     }
@@ -102,6 +123,7 @@ public class CourseDAOImpl implements CourseDAO {
             return courses;
         } catch (HibernateException exc) {
             log.error("Receiving all courses, FAIL.");
+            log.error("Error : " + exc.getMessage());
             return null;
         }
     }

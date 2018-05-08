@@ -45,9 +45,12 @@ public class GroupServiceImpl implements GroupService {
         if (courseId != null) {
             Course course = courseDAO.read(courseId);
             Group group = new Group(course, title, begin, end);
-            if (groupDAO.create(group) == null) {
-                return false;
-            }
+
+            Long groupId = groupDAO.create(group);
+            group.setId(groupId);
+
+            course.getGroups().add(group);
+            courseDAO.update(course);
         }
         return true;
     }
@@ -66,12 +69,17 @@ public class GroupServiceImpl implements GroupService {
     @Cacheable
     @Override
     public Group[] findGroupsByCourseId(Long courseId) {
-        List<Group> list = groupDAO.findAllByCourseId(courseId);
-        Group[] groups = new Group[list.size()];
-        for (int i = 0; i < groups.length; i++) {
-            groups[i] = list.get(i);
+        Course course = courseDAO.read(courseId);
+
+        if (course.getGroups() != null && course.getGroups().size() > 0) {
+            List<Group> list = course.getGroups();
+            Group[] groups = new Group[list.size()];
+            for (int i = 0; i < groups.length; i++) {
+                groups[i] = list.get(i);
+            }
+            return groups;
         }
-        return groups;
+        return new Group[0];
     }
 
     @Cacheable

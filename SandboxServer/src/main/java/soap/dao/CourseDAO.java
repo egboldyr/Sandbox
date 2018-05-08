@@ -14,6 +14,8 @@ public interface CourseDAO {
 
     Course read(Long id);
 
+    boolean update(Course course);
+
     Course findByTitle(String title);
 
     List<Course> findPart(Integer from, Integer count);

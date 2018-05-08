@@ -24,7 +24,7 @@ public class Course implements Serializable {
     @Column
     private String description;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "courseId", targetEntity = Group.class)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "courseId", targetEntity = Group.class)
     private List<Group> groups = new ArrayList<Group>();
 
     @ManyToMany(mappedBy = "courses", cascade = { CascadeType.PERSIST, CascadeType.MERGE }, targetEntity = Client.class)
