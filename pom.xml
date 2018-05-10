@@ -21,6 +21,8 @@
         <module>SandboxServer</module>
         <module>SandBoxClient</module>
         <module>SandBoxRequisitionClient</module>
+
+        <module>SandBoxAdminApi</module>
     </modules>
 
     <build>
