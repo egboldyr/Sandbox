@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
  * Created by EGBoldyr on 11.05.18.
  */
 
-public class NewUserParameters {
+public class UserParameters {
 
     @NotNull
     private String login;
