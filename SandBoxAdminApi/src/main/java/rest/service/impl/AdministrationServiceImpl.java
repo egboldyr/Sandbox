@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rest.dao.UserDAO;
 import rest.domain.User;
+import rest.exeption.AdministrationDataException;
 import rest.service.AdministrationService;
+import rest.util.error.ErrorCode;
 import rest.util.mapper.UsersMapper;
 
 import java.util.List;
@@ -28,6 +30,10 @@ public class AdministrationServiceImpl implements AdministrationService {
     @Override
     public UserDTO createAppUser(UserParameters parameters) {
         User user = new User(parameters.getLogin(), parameters.getPassword());
+        if (userDAO.findByLogin(parameters.getLogin()) != null ) {
+            throw new AdministrationDataException(
+                    ErrorCode.LOGIN_ALREADY_EXISTS, "Error! Login already exists!");
+        }
         return mapper.userDomainToUserDto(userDAO.saveAndFlush(user));
     }
 
