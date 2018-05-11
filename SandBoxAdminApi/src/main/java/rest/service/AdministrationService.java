@@ -2,7 +2,7 @@ package rest.service;
 
 import api.dto.UserDTO;
 import api.request.BaseUserItem;
-import api.request.user.NewUserParameters;
+import api.request.user.UserParameters;
 
 import java.util.List;
 
@@ -12,7 +12,9 @@ import java.util.List;
 
 public interface AdministrationService {
 
-    UserDTO createAppUser(NewUserParameters parameters);
+    UserDTO createAppUser(UserParameters parameters);
+
+    UserDTO updateAppUser(UserParameters parameters);
 
     void deleteAppUser(BaseUserItem parameters);
 

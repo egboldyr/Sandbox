@@ -2,7 +2,7 @@ package rest.service.impl;
 
 import api.dto.UserDTO;
 import api.request.BaseUserItem;
-import api.request.user.NewUserParameters;
+import api.request.user.UserParameters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rest.dao.UserDAO;
@@ -26,8 +26,16 @@ public class AdministrationServiceImpl implements AdministrationService {
     private UsersMapper mapper;
 
     @Override
-    public UserDTO createAppUser(NewUserParameters parameters) {
+    public UserDTO createAppUser(UserParameters parameters) {
         User user = new User(parameters.getLogin(), parameters.getPassword());
+        return mapper.userDomainToUserDto(userDAO.saveAndFlush(user));
+    }
+
+    @Override
+    public UserDTO updateAppUser(UserParameters parameters) {
+        User user = userDAO.findByLogin(parameters.getLogin());
+        user.setLogin(parameters.getLogin());
+        user.setPassword(parameters.getPassword());
         return mapper.userDomainToUserDto(userDAO.saveAndFlush(user));
     }
 
