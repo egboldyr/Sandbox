@@ -1,6 +1,7 @@
 package api.endpoint;
 
 import api.dto.UserDTO;
+import api.request.BaseUserItem;
 import api.request.GeneralRequest;
 import api.request.user.NewUserParameters;
 import api.response.GeneralResponse;
@@ -29,7 +30,7 @@ public interface AdministrationApiEndpointInterface {
     GeneralResponse<Void> updateAppUser(GeneralRequest<Void> request);
 
     @ApiOperation(value = "Удаление учетной записи пользователя приложения")
-    GeneralResponse<Void> deleteAppUsers(GeneralRequest<Void> request);
+    GeneralResponse<Void> deleteAppUsers(GeneralRequest<BaseUserItem> request);
 
     @ApiOperation(value = "Получение списка всех существующих учетных записей")
     GeneralResponse<Void> getAllAppUsers();

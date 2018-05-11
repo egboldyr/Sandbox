@@ -2,6 +2,7 @@ package rest.endpoint;
 
 import api.dto.UserDTO;
 import api.endpoint.AdministrationApiEndpointInterface;
+import api.request.BaseUserItem;
 import api.request.GeneralRequest;
 import api.request.user.NewUserParameters;
 import api.response.GeneralResponse;
@@ -40,7 +41,8 @@ public class AdministrationRestEndpoint implements AdministrationApiEndpointInte
 
     @Override
     @RequestMapping(value = "/deleteappuser", method = RequestMethod.DELETE)
-    public GeneralResponse<Void> deleteAppUsers(@RequestBody GeneralRequest<Void> request) {
+    public GeneralResponse<Void> deleteAppUsers(@RequestBody GeneralRequest<BaseUserItem> request) {
+        administrationService.deleteAppUser(request.getParameters());
         return new GeneralResponse<Void>(ResponseCode.OK, null);
     }
 
