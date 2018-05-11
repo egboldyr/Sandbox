@@ -28,6 +28,12 @@
 
         <!-- DB Connector Properties-->
         <mysql.connector.ver>5.1.40</mysql.connector.ver>
+
+        <!-- Mapper Properties-->
+        <mapstruct.ver>1.2.0.Final</mapstruct.ver>
+
+        <!-- Compiler Properties -->
+        <maven.compiler.ver>3.5.1</maven.compiler.ver>
     </properties>
 
     <dependencies>
@@ -104,6 +110,34 @@
             <version>${swagger.ver}</version>
         </dependency>
 
+        <!-- Mapper Properties-->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-jdk8</artifactId>
+            <version>${mapstruct.ver}</version>
+        </dependency>
+
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.ver}</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>${mapstruct.ver}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
