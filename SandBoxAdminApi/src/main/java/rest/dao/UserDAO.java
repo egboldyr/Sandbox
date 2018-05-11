@@ -9,4 +9,6 @@ import rest.domain.User;
 
 public interface UserDAO extends JpaRepository<User, Long> {
 
+    User findByLogin(String login);
+
 }
