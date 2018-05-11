@@ -40,7 +40,6 @@ public class AdministrationServiceImpl implements AdministrationService {
     @Override
     public UserDTO updateAppUser(UserParameters parameters) {
         User user = userDAO.findByLogin(parameters.getLogin());
-        user.setLogin(parameters.getLogin());
         user.setPassword(parameters.getPassword());
         return mapper.userDomainToUserDto(userDAO.saveAndFlush(user));
     }
