@@ -39,7 +39,7 @@ public class GroupServiceImpl implements GroupService {
         log = LoggerFactory.getLogger(GroupServiceImpl.class);
     }
 
-    @CachePut
+    @CacheEvict(allEntries = true)
     @Override
     public boolean create(Long courseId, String title, Date begin, Date end) {
         if (courseId != null) {
