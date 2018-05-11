@@ -1,6 +1,7 @@
 package rest.service.impl;
 
 import api.dto.UserDTO;
+import api.request.BaseUserItem;
 import api.request.user.NewUserParameters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,5 +27,13 @@ public class AdministrationServiceImpl implements AdministrationService {
     public UserDTO createAppUser(NewUserParameters parameters) {
         User user = new User(parameters.getLogin(), parameters.getPassword());
         return mapper.userDomainToUserDto(userDAO.saveAndFlush(user));
+    }
+
+    @Override
+    public void deleteAppUser(BaseUserItem parameters) {
+        User user = userDAO.findByLogin(parameters.getLogin());
+        if (user != null) {
+            userDAO.delete(user);
+        }
     }
 }

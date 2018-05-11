@@ -1,6 +1,7 @@
 package rest.service;
 
 import api.dto.UserDTO;
+import api.request.BaseUserItem;
 import api.request.user.NewUserParameters;
 
 /**
@@ -11,5 +12,6 @@ public interface AdministrationService {
 
     UserDTO createAppUser(NewUserParameters parameters);
 
+    void deleteAppUser(BaseUserItem parameters);
 
 }
