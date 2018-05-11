@@ -10,6 +10,8 @@ import rest.domain.User;
 import rest.service.AdministrationService;
 import rest.util.mapper.UsersMapper;
 
+import java.util.List;
+
 /**
  * Created by EGBoldyr on 11.05.18.
  */
@@ -35,5 +37,10 @@ public class AdministrationServiceImpl implements AdministrationService {
         if (user != null) {
             userDAO.delete(user);
         }
+    }
+
+    @Override
+    public List<UserDTO> findAllAppUsers() {
+        return mapper.userDomainListToUserDtoList(userDAO.findAll());
     }
 }
