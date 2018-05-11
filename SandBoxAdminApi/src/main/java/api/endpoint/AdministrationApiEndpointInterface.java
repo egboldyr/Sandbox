@@ -3,7 +3,7 @@ package api.endpoint;
 import api.dto.UserDTO;
 import api.request.BaseUserItem;
 import api.request.GeneralRequest;
-import api.request.user.NewUserParameters;
+import api.request.user.UserParameters;
 import api.response.GeneralResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -26,10 +26,10 @@ import java.util.List;
 public interface AdministrationApiEndpointInterface {
 
     @ApiOperation(value = "Создание новой учетной записи пользователя для приложения")
-    GeneralResponse<UserDTO> createNewAppUser(GeneralRequest<NewUserParameters> request);
+    GeneralResponse<UserDTO> createNewAppUser(GeneralRequest<UserParameters> request);
 
     @ApiOperation(value = "Обновление данных в учетной записи пользователя приложения")
-    GeneralResponse<Void> updateAppUser(GeneralRequest<Void> request);
+    GeneralResponse<UserDTO> updateAppUser(GeneralRequest<UserParameters> request);
 
     @ApiOperation(value = "Удаление учетной записи пользователя приложения")
     GeneralResponse<Void> deleteAppUsers(GeneralRequest<BaseUserItem> request);

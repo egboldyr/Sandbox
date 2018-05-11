@@ -4,7 +4,7 @@ import api.dto.UserDTO;
 import api.endpoint.AdministrationApiEndpointInterface;
 import api.request.BaseUserItem;
 import api.request.GeneralRequest;
-import api.request.user.NewUserParameters;
+import api.request.user.UserParameters;
 import api.response.GeneralResponse;
 import api.response.ResponseCode;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,14 +30,14 @@ public class AdministrationRestEndpoint implements AdministrationApiEndpointInte
 
     @Override
     @RequestMapping(value = "/createappuser", method = RequestMethod.POST)
-    public GeneralResponse<UserDTO> createNewAppUser(@RequestBody @Valid GeneralRequest<NewUserParameters> request) {
+    public GeneralResponse<UserDTO> createNewAppUser(@RequestBody @Valid GeneralRequest<UserParameters> request) {
         return new GeneralResponse<UserDTO>(ResponseCode.OK, administrationService.createAppUser(request.getParameters()));
     }
 
     @Override
     @RequestMapping(value = "/updateappuser", method = RequestMethod.PUT)
-    public GeneralResponse<Void> updateAppUser(@RequestBody GeneralRequest<Void> request) {
-        return new GeneralResponse<Void>(ResponseCode.OK, null);
+    public GeneralResponse<UserDTO> updateAppUser(@RequestBody GeneralRequest<UserParameters> request) {
+        return new GeneralResponse<UserDTO>(ResponseCode.OK, administrationService.updateAppUser(request.getParameters()));
     }
 
     @Override
