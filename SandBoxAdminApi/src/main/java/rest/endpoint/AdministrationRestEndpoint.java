@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import rest.service.AdministrationService;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * Created by EGBoldyr on 10.05.18.
@@ -48,8 +49,8 @@ public class AdministrationRestEndpoint implements AdministrationApiEndpointInte
 
     @Override
     @RequestMapping(value = "/getallappusers", method = RequestMethod.GET)
-    public GeneralResponse<Void> getAllAppUsers() {
-        return new GeneralResponse<Void>(ResponseCode.OK, null);
+    public GeneralResponse<List<UserDTO>> getAllAppUsers() {
+        return new GeneralResponse<List<UserDTO>>(ResponseCode.OK, administrationService.findAllAppUsers());
     }
 
 }

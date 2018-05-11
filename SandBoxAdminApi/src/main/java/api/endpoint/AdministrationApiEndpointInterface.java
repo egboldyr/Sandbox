@@ -10,6 +10,8 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.Info;
 import io.swagger.annotations.SwaggerDefinition;
 
+import java.util.List;
+
 /**
  * Created by EGBoldyr on 10.05.18.
  */
@@ -33,6 +35,6 @@ public interface AdministrationApiEndpointInterface {
     GeneralResponse<Void> deleteAppUsers(GeneralRequest<BaseUserItem> request);
 
     @ApiOperation(value = "Получение списка всех существующих учетных записей")
-    GeneralResponse<Void> getAllAppUsers();
+    GeneralResponse<List<UserDTO>> getAllAppUsers();
 
 }
