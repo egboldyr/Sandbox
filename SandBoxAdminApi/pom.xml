@@ -14,6 +14,10 @@
     <artifactId>SandBoxAdminApi</artifactId>
 
     <properties>
+        <!-- Spring Boot Properties -->
+        <spring.boot.test.ver>1.5.9.RELEASE</spring.boot.test.ver>
+        <spring.test.ver>4.3.17.RELEASE</spring.test.ver>
+
         <!-- Swagger Properties-->
         <springfox.ver>2.8.0</springfox.ver>
         <swagger.ver>1.5.18</swagger.ver>
@@ -34,6 +38,9 @@
 
         <!-- Compiler Properties -->
         <maven.compiler.ver>3.5.1</maven.compiler.ver>
+
+        <!-- JUnit & Mockito Properties -->
+        <junit.ver>4.12</junit.ver>
     </properties>
 
     <dependencies>
@@ -48,6 +55,20 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>${spring.boot.test.ver}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.test.ver}</version>
+        </dependency>
+
 
         <!-- DB Properties -->
         <dependency>
@@ -115,6 +136,13 @@
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct-jdk8</artifactId>
             <version>${mapstruct.ver}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.ver}</version>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>
