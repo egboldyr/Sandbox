@@ -1,6 +1,8 @@
 package api.endpoint;
 
+import api.dto.UserDTO;
 import api.request.GeneralRequest;
+import api.request.user.NewUserParameters;
 import api.response.GeneralResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -21,7 +23,7 @@ import io.swagger.annotations.SwaggerDefinition;
 public interface AdministrationApiEndpointInterface {
 
     @ApiOperation(value = "Создание новой учетной записи пользователя для приложения")
-    GeneralResponse<Void> createNewAppUser(GeneralRequest<Void> request);
+    GeneralResponse<UserDTO> createNewAppUser(GeneralRequest<NewUserParameters> request);
 
     @ApiOperation(value = "Обновление данных в учетной записи пользователя приложения")
     GeneralResponse<Void> updateAppUser(GeneralRequest<Void> request);
