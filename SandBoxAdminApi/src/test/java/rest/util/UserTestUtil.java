@@ -1,5 +1,7 @@
 package rest.util;
 
+import api.request.BaseUserItem;
+import api.request.user.UserParameters;
 import rest.domain.User;
 
 import java.util.ArrayList;
@@ -37,5 +39,25 @@ public class UserTestUtil {
         users.add(third);
 
         return users;
+    }
+
+    public static UserParameters createBasicAppUserParameters() {
+        UserParameters parameters = new UserParameters();
+        parameters.setLogin("ParamsUser");
+        parameters.setPassword("ParamsPassword");
+        return parameters;
+    }
+
+    public static UserParameters createBasicAppUserWithCustomLoginParameters(String login) {
+        UserParameters parameters = new UserParameters();
+        parameters.setLogin(login);
+        parameters.setPassword("ParamsPassword");
+        return parameters;
+    }
+
+    public static BaseUserItem createBaseUserItemParameters(String login) {
+        BaseUserItem parameters = new BaseUserItem();
+        parameters.setLogin(login);
+        return parameters;
     }
 }
