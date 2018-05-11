@@ -17,8 +17,27 @@ import org.springframework.web.bind.annotation.RestController;
 public class AdministrationRestEndpoint implements AdministrationApiEndpointInterface {
 
     @Override
-    @RequestMapping(value = "/createuser", method = RequestMethod.POST)
-    public GeneralResponse<Void> createNewApplicationUser(@RequestBody GeneralRequest<Void> request) {
+    @RequestMapping(value = "/createappuser", method = RequestMethod.POST)
+    public GeneralResponse<Void> createNewAppUser(@RequestBody GeneralRequest<Void> request) {
         return new GeneralResponse<Void>("200", null);
     }
+
+    @Override
+    @RequestMapping(value = "/updateappuser", method = RequestMethod.PUT)
+    public GeneralResponse<Void> updateAppUser(@RequestBody GeneralRequest<Void> request) {
+        return new GeneralResponse<Void>("200", null);
+    }
+
+    @Override
+    @RequestMapping(value = "/deleteappuser", method = RequestMethod.DELETE)
+    public GeneralResponse<Void> deleteAppUsers(@RequestBody GeneralRequest<Void> request) {
+        return new GeneralResponse<Void>("200", null);
+    }
+
+    @Override
+    @RequestMapping(value = "/getallappusers", method = RequestMethod.GET)
+    public GeneralResponse<Void> getAllAppUsers() {
+        return new GeneralResponse<Void>("200", null);
+    }
+
 }
