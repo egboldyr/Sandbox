@@ -5,10 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import soap.dao.RequisitionDAO;
 import soap.dao.RequisitionRepository;
 import soap.entity.Requisition;
 import soap.entity.enums.RequisitionStatus;
@@ -26,9 +24,6 @@ import java.util.List;
 public class RequisitionServiceImpl implements RequisitionService {
 
     private Logger log;
-
-    @Autowired
-    private RequisitionDAO dao;
 
     @Autowired
     private RequisitionRepository repository;
@@ -63,7 +58,7 @@ public class RequisitionServiceImpl implements RequisitionService {
             log.error("Incorrect [STATUS : " + status + "] Requisition update CANCELED.");
             return false;
         }
-        dao.update(requisition);
+        repository.saveAndFlush(requisition);
         return true;
     }
 
