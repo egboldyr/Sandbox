@@ -7,7 +7,7 @@ new customers for courses.
 
 BackEnd:
 - Java SE, JavaEE.
-- Hibernate, Spring (Boot, Security).
+- Hibernate, Spring (Boot, Data JPA, Security).
 - Tomcat 8.0, Apache Velocity, JAX-WS (SOAP & WSDL).
 - MapStruct 1.2.0
 
