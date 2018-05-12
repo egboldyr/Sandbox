@@ -21,7 +21,7 @@ public interface CourseWebService {
     CourseDTO findByTitle(String title);
 
     @WebMethod
-    CourseDTO[] findCoursesPart(Integer from);
+    CourseDTO[] findCoursesPart(Integer page);
 
     @WebMethod
     CourseDTO[] allCourses();

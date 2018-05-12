@@ -49,9 +49,9 @@ public class CourseWebServiceImpl implements CourseWebService {
     }
 
     @Override
-    public CourseDTO[] findCoursesPart(Integer from) {
+    public CourseDTO[] findCoursesPart(Integer page) {
         log.info("Receiving courses... START");
-        Course[] courses = service.findCoursesPart(from, 4);
+        Course[] courses = service.findCoursesPart(page, 4);
         log.info("Receiving courses... COMPLETE");
         return mapper.coursesArrayToCourseDtoArray(courses);
     }

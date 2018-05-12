@@ -25,7 +25,7 @@ public interface ClientWebService {
     boolean delete(ClientDTO client);
 
     @WebMethod
-    ClientDTO[] getClients(Integer from);
+    ClientDTO[] getClients(Integer page);
 
     @WebMethod
     boolean writeDownClientOnCourse(Long courseId, Long clientId);

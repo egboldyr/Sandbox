@@ -83,9 +83,9 @@ public class ClientWebServiceImpl implements ClientWebService {
     }
 
     @Override
-    public ClientDTO[] getClients(Integer from) {
+    public ClientDTO[] getClients(Integer page) {
         log.info("Receiving clients... START");
-        Client[] clients = clientService.findClientsPart(from, 10);
+        Client[] clients = clientService.findClientsPart(page, 10);
         log.info("Receiving clients... COMPLETE");
         return clientsMapper.clientsArrayToClientDtoArray(clients);
     }

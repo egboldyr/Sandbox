@@ -51,9 +51,9 @@ public class CoursesController {
     @RequestMapping(value = URL_GET_COURSES_PART, method = RequestMethod.POST)
     public @ResponseBody String getCoursesPart(@RequestParam("action") String action) {
         if (action.equals("PREV") && from > 0) {
-            from -= 4;
+            from--;
         } else if (action.equals("NEXT")) {
-            from += 4;
+            from++;
         } else if (action.equals("UPLOAD")) {
             from = 0;
         }

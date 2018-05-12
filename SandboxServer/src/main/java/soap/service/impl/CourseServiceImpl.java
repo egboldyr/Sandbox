@@ -7,7 +7,7 @@ import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import soap.dao.CourseDAO;
+import soap.dao.CourseRepository;
 import soap.entity.Course;
 import soap.service.CourseService;
 
@@ -25,7 +25,7 @@ public class CourseServiceImpl implements CourseService {
     private Logger log;
 
     @Autowired
-    private CourseDAO dao;
+    private CourseRepository repository;
 
     @PostConstruct
     private void initialize() {
@@ -36,7 +36,7 @@ public class CourseServiceImpl implements CourseService {
     @CacheEvict(allEntries = true)
     public boolean create(String title) {
         Course course = new Course(title);
-        if (dao.create(course) == null) {
+        if (repository.saveAndFlush(course) == null) {
             return false;
         }
         return true;
@@ -45,7 +45,7 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public Course read(Long id) {
         if (id != null) {
-            return dao.read(id);
+            return repository.findOne(id);
         }
         return null;
     }
@@ -55,13 +55,13 @@ public class CourseServiceImpl implements CourseService {
         if (title == null) {
             return null;
         }
-        return dao.findByTitle(title);
+        return repository.findByTitle(title);
     }
 
     @Override
     @Cacheable
-    public Course[] findCoursesPart(Integer from, Integer count) {
-        List<Course> list = dao.findPart(from, count);
+    public Course[] findCoursesPart(Integer page, Integer count) {
+        List<Course> list = repository.findAll(page, count);
         Course[] courses = new Course[list.size()];
         for (int i = 0; i < courses.length; i++) {
             courses[i] = list.get(i);
@@ -72,7 +72,7 @@ public class CourseServiceImpl implements CourseService {
     @Override
     @Cacheable
     public Course[] findAll() {
-        List<Course> list = dao.findAll();
+        List<Course> list = repository.findAll();
         Course[] courses = new Course[list.size()];
         for (int i = 0; i < courses.length; i++) {
             courses[i] = list.get(i);

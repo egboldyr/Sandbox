@@ -22,7 +22,7 @@ public interface RequisitionWebService {
     boolean updateStatus(Long id, String status);
 
     @WebMethod
-    RequisitionDTO[] getRequisitions(Integer from, Integer count);
+    RequisitionDTO[] getRequisitions(Integer page, Integer count);
 
     @WebMethod
     RequisitionDTO[] allRequisitions();

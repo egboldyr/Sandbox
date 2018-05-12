@@ -48,9 +48,9 @@ public class RequisitionWebServiceImpl implements RequisitionWebService {
     }
 
     @Override
-    public RequisitionDTO[] getRequisitions(Integer from, Integer count) {
+    public RequisitionDTO[] getRequisitions(Integer page, Integer count) {
         log.info("Receiving " + count + " requisitions... START");
-        Requisition[] requisitions = service.getRequisitions(from, count);
+        Requisition[] requisitions = service.getRequisitions(page, count);
         return mapper.requitionsArrayToRequisitionDtoArray(requisitions);
     }
 
