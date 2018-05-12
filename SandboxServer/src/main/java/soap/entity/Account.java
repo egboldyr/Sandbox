@@ -30,7 +30,8 @@ public class Account implements Serializable {
     @Column
     private String password;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "CLIENT_ID", nullable = false)
     private Client client;
 
     public Account() {}
