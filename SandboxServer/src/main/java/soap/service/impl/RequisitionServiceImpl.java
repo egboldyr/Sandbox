@@ -9,6 +9,7 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import soap.dao.RequisitionDAO;
+import soap.dao.RequisitionRepository;
 import soap.entity.Requisition;
 import soap.entity.enums.RequisitionStatus;
 import soap.service.RequisitionService;
@@ -29,6 +30,9 @@ public class RequisitionServiceImpl implements RequisitionService {
     @Autowired
     private RequisitionDAO dao;
 
+    @Autowired
+    private RequisitionRepository repository;
+
     @PostConstruct
     private void initialize() {
         log = LoggerFactory.getLogger(RequisitionServiceImpl.class);
@@ -38,7 +42,7 @@ public class RequisitionServiceImpl implements RequisitionService {
     @CacheEvict(allEntries = true)
     public boolean create(String name, String phone, String email, String comment) {
         Requisition requisition = new Requisition(name, phone, email, comment);
-        if (dao.create(requisition) == null) {
+        if (repository.saveAndFlush(requisition) == null) {
             return false;
         }
         return true;
@@ -48,7 +52,7 @@ public class RequisitionServiceImpl implements RequisitionService {
     @CacheEvict(allEntries = true)
     public boolean update(Long id, String status) {
         log.info("Requisition updating... Change [STATUS : " + status + "] for requisition [ID : " + id + "].");
-        Requisition requisition = dao.read(id);
+        Requisition requisition = repository.findOne(id);
         if (status.equals("PROCESS")) {
             requisition.setStatus(RequisitionStatus.PROCESS);
         } else if (status.equals("COMPLETE")) {
@@ -65,8 +69,8 @@ public class RequisitionServiceImpl implements RequisitionService {
 
     @Override
     @Cacheable
-    public Requisition[] getRequisitions(Integer from, Integer count) {
-        List<Requisition> list = dao.findRequisitions(from, count);
+    public Requisition[] getRequisitions(Integer page, Integer count) {
+        List<Requisition> list = repository.findAll(page, count);
         Requisition[] requisitions = new Requisition[list.size()];
         for (int i = 0; i < list.size(); i++) {
             requisitions[i] = list.get(i);
@@ -77,7 +81,7 @@ public class RequisitionServiceImpl implements RequisitionService {
     @Override
     @Cacheable
     public Requisition[] findAll() {
-        List<Requisition> list = dao.findAll();
+        List<Requisition> list = repository.findAll();
         Requisition[] requisitions = new Requisition[list.size()];
         for (int i = 0; i < requisitions.length; i++) {
             requisitions[i] = list.get(i);
