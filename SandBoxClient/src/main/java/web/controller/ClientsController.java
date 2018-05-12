@@ -75,9 +75,9 @@ public class ClientsController {
     @RequestMapping(value = URL_PART_CLIENT, method = RequestMethod.POST)
     public @ResponseBody String findPartOfClients(@RequestParam("action") String action) {
         if (action.equals("PREV") & from > 0) {
-            from -= 10;
+            from--;
         } else if (action.equals("NEXT")) {
-            from += 10;
+            from++;
         } else if (action.equals("UPLOAD")) {
             from = 0;
         }
