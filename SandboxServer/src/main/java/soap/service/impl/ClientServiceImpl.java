@@ -45,7 +45,7 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public Client read(Long id) {
         if (id != null) {
-            return repository.findOne(id);
+            return repository.findDistinctById(id);
         }
         return null;
     }
