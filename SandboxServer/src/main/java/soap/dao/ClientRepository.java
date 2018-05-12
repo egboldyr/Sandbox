@@ -12,6 +12,8 @@ import java.util.List;
 
 public interface ClientRepository extends JpaRepository<Client, Long> {
 
+    Client findDistinctById(Long id);
+
     default List<Client> findAll(Integer page, Integer count) {
         return this.findAll(new PageRequest(page, count)).getContent();
     }
