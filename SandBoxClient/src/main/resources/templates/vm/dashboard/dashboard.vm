@@ -3,6 +3,7 @@
         <title>Manager Workspace</title>
         <script>
             #include("/templates/vm/js/lib/jquery-3.3.1.js");
+            #include("/templates/vm/dashboard/js/administration.js");
             #include("/templates/vm/dashboard/js/requisitions.js");
             #include("/templates/vm/dashboard/js/clients.js");
             #include("/templates/vm/dashboard/js/courses.js");
@@ -19,6 +20,8 @@
                 <p><input class="option" type="button" value="Requistions" onclick="return checkRequisitions()"></p>
                 <p><input class="option" type="button" value="Clients" onclick="return checkClients()"></p>
                 <p><input class="option" type="button" value="Courses and Groups" onclick="return checkCoursesAndGroups()"></p>
+                <hr/>
+                <p><input class="option" type="button" value="Administration" onclick="return checkUsers()"></p>
             </fieldset>
         </div>
         <div class="workspace_div">
