@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
-import soap.dao.AccountDAO;
+import soap.dao.AccountRepository;
 import soap.entity.Account;
 import soap.service.AccountService;
 
@@ -21,7 +21,7 @@ public class AccountServiceImpl implements AccountService {
     private Logger log;
 
     @Autowired
-    private AccountDAO dao;
+    private AccountRepository accountRepository;
 
     @PostConstruct
     private void initialize() {
@@ -35,7 +35,7 @@ public class AccountServiceImpl implements AccountService {
             log.error("Account can't be NULL.");
             return;
         }
-        account.setId(dao.create(account));
+        accountRepository.saveAndFlush(account);
     }
 
     @Override
@@ -59,6 +59,6 @@ public class AccountServiceImpl implements AccountService {
             log.error("Client [LOGIN = null]");
             return null;
         }
-        return dao.getByLogin(login);
+        return accountRepository.findByLogin(login);
     }
 }

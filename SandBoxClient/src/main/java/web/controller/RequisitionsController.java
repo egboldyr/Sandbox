@@ -44,9 +44,9 @@ public class RequisitionsController {
     public @ResponseBody String findPartRequisitions(@RequestParam("amount") Integer amount, @RequestParam("action") String action) {
 
         if (action.equals("PREV") & from > 0) {
-            from -= amount;
+            from--;
         } else if (action.equals("NEXT")) {
-            from += amount;
+            from++;
         } else if (action.equals("UPLOAD")) {
             from = 0;
         }

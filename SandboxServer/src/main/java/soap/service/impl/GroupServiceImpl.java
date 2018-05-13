@@ -5,11 +5,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import soap.dao.CourseDAO;
-import soap.dao.GroupDAO;
+import soap.dao.CourseRepository;
+import soap.dao.GroupRepository;
 import soap.entity.Course;
 import soap.entity.Group;
 import soap.service.GroupService;
@@ -29,28 +28,24 @@ public class GroupServiceImpl implements GroupService {
     private Logger log;
 
     @Autowired
-    private CourseDAO courseDAO;
+    private CourseRepository courseRepository;
 
     @Autowired
-    private GroupDAO groupDAO;
+    private GroupRepository groupRepository;
 
     @PostConstruct
     private void initialize() {
         log = LoggerFactory.getLogger(GroupServiceImpl.class);
     }
 
-    @CachePut
+    @CacheEvict(allEntries = true)
     @Override
     public boolean create(Long courseId, String title, Date begin, Date end) {
         if (courseId != null) {
-            Course course = courseDAO.read(courseId);
+            Course course = courseRepository.findOne(courseId);
             Group group = new Group(course, title, begin, end);
-
-            Long groupId = groupDAO.create(group);
-            group.setId(groupId);
-
-            course.getGroups().add(group);
-            courseDAO.update(course);
+            course.getGroups().add(groupRepository.saveAndFlush(group));
+            courseRepository.saveAndFlush(course);
         }
         return true;
     }
@@ -58,7 +53,7 @@ public class GroupServiceImpl implements GroupService {
     @Cacheable
     @Override
     public Group[] findGroupsByActualDate(Date actualDate) {
-        List<Group> list = groupDAO.findAllByActualDate(actualDate);
+        List<Group> list = groupRepository.findAllByBeginDateGreaterThanEqual(actualDate);
         Group[] groups = new Group[list.size()];
         for (int i = 0; i < groups.length; i++) {
             groups[i] = list.get(i);
@@ -69,7 +64,7 @@ public class GroupServiceImpl implements GroupService {
     @Cacheable
     @Override
     public Group[] findGroupsByCourseId(Long courseId) {
-        Course course = courseDAO.read(courseId);
+        Course course = courseRepository.findOne(courseId);
 
         if (course.getGroups() != null && course.getGroups().size() > 0) {
             List<Group> list = course.getGroups();
@@ -85,7 +80,7 @@ public class GroupServiceImpl implements GroupService {
     @Cacheable
     @Override
     public Group[] findAll() {
-        List<Group> list = groupDAO.findAll();
+        List<Group> list = groupRepository.findAll();
         Group[] groups = new Group[list.size()];
         for (int i = 0; i < groups.length; i++) {
             groups[i] = list.get(i);
