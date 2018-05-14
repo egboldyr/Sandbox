@@ -24,8 +24,6 @@ public class CourseCacheImpl implements CourseCache {
 
     private Logger log;
 
-    private Integer page;
-
     private CourseWebService courseWS;
 
     @PostConstruct
@@ -50,10 +48,7 @@ public class CourseCacheImpl implements CourseCache {
 
     @Override
     @Cacheable
-    public List<CourseDTO> getCoursesPage(String action) {
-        if      (action.equals("PREV") && page > 0) page--;
-        else if (action.equals("NEXT"))             page++;
-        else if (action.equals("UPLOAD"))           page = 0;
+    public List<CourseDTO> getCoursesPage(Integer page) {
         return courseWS.findCoursesPart(page).getItem();
     }
 

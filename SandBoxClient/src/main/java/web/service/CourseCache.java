@@ -14,7 +14,7 @@ public interface CourseCache {
 
     CourseDTO findByTitle(String title);
 
-    List<CourseDTO> getCoursesPage(String action);
+    List<CourseDTO> getCoursesPage(Integer page);
 
     List<CourseDTO> getAllCourses();
 }
