@@ -2,14 +2,13 @@ package web.controller;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import web.jaxws.RequisitionDTO;
-import web.jaxws.RequisitionService;
-import web.jaxws.RequisitionWebService;
+import web.service.RequisitionCache;
 
-import javax.annotation.PostConstruct;
 import java.util.List;
 
 /**
@@ -19,39 +18,28 @@ import java.util.List;
 @Controller
 public class RequisitionsController {
 
+    private Integer page;
+
     private static final String URL_UPDATE_REQUISITION = "/update_status";
     private static final String URL_FIND_PART_REQUISITION = "/part_requisitions";
     private static final String URL_FIND_ALL_REQUISITION = "/all_requisitions";
 
-    private Integer from;
-
-    private RequisitionWebService requisitionWS;
-
-    @PostConstruct
-    private void initialize() {
-        from = 0;
-        RequisitionService requisition = new RequisitionService();
-        requisitionWS = requisition.getRequisitionPort();
-    }
+    @Autowired
+    private RequisitionCache requisitionCache;
 
     @RequestMapping(value = URL_UPDATE_REQUISITION, method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public void updateStatus(@RequestParam("req_id") Long req_id, @RequestParam("status") String status) {
-        requisitionWS.updateStatus(req_id, status);
+        requisitionCache.updateRequisitionStatus(req_id, status);
     }
 
     @RequestMapping(value = URL_FIND_PART_REQUISITION, method = RequestMethod.POST)
     public @ResponseBody String findPartRequisitions(@RequestParam("amount") Integer amount, @RequestParam("action") String action) {
+        if      (action.equals("PREV") && page > 0) page--;
+        else if (action.equals("NEXT"))             page++;
+        else if (action.equals("UPLOAD"))           page = 0;
 
-        if (action.equals("PREV") & from > 0) {
-            from--;
-        } else if (action.equals("NEXT")) {
-            from++;
-        } else if (action.equals("UPLOAD")) {
-            from = 0;
-        }
-
-        List<RequisitionDTO> requisitions = requisitionWS.getRequisitions(from, amount).getItem();
+        List<RequisitionDTO> requisitions = requisitionCache.getRequisitionsPage(page, amount);
         JSONArray body = new JSONArray();
         for (RequisitionDTO req : requisitions) {
             JSONObject jsonItem = new JSONObject();
@@ -69,7 +57,7 @@ public class RequisitionsController {
 
     @RequestMapping(value = URL_FIND_ALL_REQUISITION, method = RequestMethod.GET)
     public @ResponseBody String findAllRequisitions() {
-        List<RequisitionDTO> requisitions = requisitionWS.allRequisitions().getItem();
+        List<RequisitionDTO> requisitions = requisitionCache.getAllRequisitions();
         JSONArray body = new JSONArray();
         body.addAll(requisitions);
         return body.toJSONString();

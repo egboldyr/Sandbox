@@ -12,6 +12,8 @@ import java.io.Serializable;
 @XmlType(propOrder = {"id", "name", "surname", "phone", "email", "account"})
 public class ClientDTO implements Serializable {
 
+    private static final long serialVersionUID = -4438075709873216678L;
+
     private Long id;
 
     private String name;

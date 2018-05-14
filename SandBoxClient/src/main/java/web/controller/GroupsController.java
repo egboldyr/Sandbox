@@ -2,12 +2,14 @@ package web.controller;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import web.jaxws.GroupDTO;
 import web.jaxws.GroupService;
 import web.jaxws.GroupWebService;
+import web.service.GroupCache;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -23,13 +25,8 @@ public class GroupsController {
     private static final String URL_ALL_GROUPS ="/get_all_groups";
     private static final String URL_GROUPS_BY_COURSE_ID ="/get_groups_by_course_id";
 
-    private GroupWebService groupWS;
-
-    @PostConstruct
-    private void initialize() {
-        GroupService service = new GroupService();
-        groupWS = service.getGroupPort();
-    }
+    @Autowired
+    private GroupCache groupCache;
 
     @RequestMapping(value = URL_NEW_GROUP, method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
@@ -37,12 +34,12 @@ public class GroupsController {
                          @RequestParam("title") String title,
                          @RequestParam("begin_date") String beginDate,
                          @RequestParam("end_date") String endDate) {
-        groupWS.newGroup(courseId, title, beginDate, endDate);
+        groupCache.newGroup(courseId, title, beginDate, endDate);
     }
 
     @RequestMapping(value = URL_GROUPS_BY_COURSE_ID, method = RequestMethod.POST)
     public @ResponseBody String getGroupsByCourseId(@RequestParam("course_id") String courseId) {
-        List<GroupDTO> groups = groupWS.byCourseId(courseId).getItem();
+        List<GroupDTO> groups = groupCache.getGroupsByCourseId(courseId);
 
         JSONArray body = new JSONArray();
         for (GroupDTO group : groups) {
@@ -59,7 +56,7 @@ public class GroupsController {
 
     @RequestMapping(value = URL_ALL_GROUPS, method = RequestMethod.GET)
     public @ResponseBody String getAllGroups() {
-        List<GroupDTO> groups = groupWS.allGroups().getItem();
+        List<GroupDTO> groups = groupCache.getAllGroups();
 
         JSONArray body = new JSONArray();
         for (GroupDTO group : groups) {

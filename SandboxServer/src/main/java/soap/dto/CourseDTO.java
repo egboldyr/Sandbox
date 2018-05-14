@@ -12,6 +12,8 @@ import java.io.Serializable;
 @XmlType(propOrder = {"id", "title"})
 public class CourseDTO implements Serializable {
 
+    private static final long serialVersionUID = -2036198478194555887L;
+
     private Long id;
 
     private String title;
