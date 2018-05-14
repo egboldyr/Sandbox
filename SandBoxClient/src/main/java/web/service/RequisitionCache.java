@@ -12,7 +12,7 @@ public interface RequisitionCache {
 
     void updateRequisitionStatus(Long id, String status);
 
-    List<RequisitionDTO> getRequisitionsPage(String action, Integer amount);
+    List<RequisitionDTO> getRequisitionsPage(Integer page, Integer amount);
 
     List<RequisitionDTO> getAllRequisitions();
 }

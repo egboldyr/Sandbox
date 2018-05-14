@@ -25,7 +25,6 @@ public class RequisitionCacheImpl implements RequisitionCache {
     private Logger log;
 
     private RequisitionWebService ws;
-    private Integer page;
 
     @PostConstruct
     private void initialize() {
@@ -43,10 +42,7 @@ public class RequisitionCacheImpl implements RequisitionCache {
 
     @Override
     @Cacheable
-    public List<RequisitionDTO> getRequisitionsPage(String action, Integer amount) {
-        if      (action.equals("PREV") && page > 0) page--;
-        else if (action.equals("NEXT"))             page++;
-        else if (action.equals("UPLOAD"))           page = 0;
+    public List<RequisitionDTO> getRequisitionsPage(Integer page, Integer amount) {
         return ws.getRequisitions(page, amount).getItem();
     }
 
