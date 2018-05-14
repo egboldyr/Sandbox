@@ -18,7 +18,7 @@ public interface ClientCache {
 
     void updateClient(ClientDTO clientDTO);
 
-    List<ClientDTO> getClientsPage(String action);
+    List<ClientDTO> getClientsPage(Integer page);
 
     void writeDownClientOnCourse(Long clientId, Long courseId);
 

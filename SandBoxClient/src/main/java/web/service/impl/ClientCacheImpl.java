@@ -22,8 +22,6 @@ public class ClientCacheImpl implements ClientCache {
 
     private Logger log = LoggerFactory.getLogger(ClientCacheImpl.class);
 
-    private Integer page;
-
     private ClientWebService clientWS;
     private AccountWebService accountWS;
 
@@ -57,10 +55,7 @@ public class ClientCacheImpl implements ClientCache {
 
     @Override
     @Cacheable(cacheNames = {"clientsFrontEndCache"})
-    public List<ClientDTO> getClientsPage(String action) {
-        if      (action.equals("PREV") && page > 0) page--;
-        else if (action.equals("NEXT"))             page++;
-        else if (action.equals("UPLOAD"))           page = 0;
+    public List<ClientDTO> getClientsPage(Integer page) {
         return clientWS.getClients(page).getItem();
     }
 
