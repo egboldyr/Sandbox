@@ -18,6 +18,8 @@ import java.util.List;
 @Controller
 public class CoursesController {
 
+    private Integer page;
+
     private static final String URL_NEW_COURSE           = "/new_course";
     private static final String URL_FIND_COURSE_BY_TITLE = "/find_by_title_course";
     private static final String URL_GET_COURSES          = "/get_courses";
@@ -43,7 +45,11 @@ public class CoursesController {
 
     @RequestMapping(value = URL_GET_COURSES_PART, method = RequestMethod.POST)
     public @ResponseBody String getCoursesPart(@RequestParam("action") String action) {
-        List<CourseDTO> courses = courseCache.getCoursesPage(action);
+        if      (action.equals("PREV") && page > 0) page--;
+        else if (action.equals("NEXT"))             page++;
+        else if (action.equals("UPLOAD"))           page = 0;
+
+        List<CourseDTO> courses = courseCache.getCoursesPage(page);
         JSONArray body = new JSONArray();
         for (CourseDTO course : courses) {
             JSONObject item = new JSONObject();
