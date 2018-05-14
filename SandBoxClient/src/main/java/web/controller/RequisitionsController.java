@@ -18,6 +18,8 @@ import java.util.List;
 @Controller
 public class RequisitionsController {
 
+    private Integer page;
+
     private static final String URL_UPDATE_REQUISITION = "/update_status";
     private static final String URL_FIND_PART_REQUISITION = "/part_requisitions";
     private static final String URL_FIND_ALL_REQUISITION = "/all_requisitions";
@@ -33,7 +35,11 @@ public class RequisitionsController {
 
     @RequestMapping(value = URL_FIND_PART_REQUISITION, method = RequestMethod.POST)
     public @ResponseBody String findPartRequisitions(@RequestParam("amount") Integer amount, @RequestParam("action") String action) {
-        List<RequisitionDTO> requisitions = requisitionCache.getRequisitionsPage(action, amount);
+        if      (action.equals("PREV") && page > 0) page--;
+        else if (action.equals("NEXT"))             page++;
+        else if (action.equals("UPLOAD"))           page = 0;
+
+        List<RequisitionDTO> requisitions = requisitionCache.getRequisitionsPage(page, amount);
         JSONArray body = new JSONArray();
         for (RequisitionDTO req : requisitions) {
             JSONObject jsonItem = new JSONObject();
