@@ -18,6 +18,8 @@ import java.util.List;
 @Controller
 public class ClientsController {
 
+    private Integer page;
+
     private static final String URL_NEW_CLIENT         = "/new_client";
     private static final String URL_NEW_ACCOUNT        = "/new_account";
     private static final String URL_UPDATE_CLIENT      = "/update_client";
@@ -63,7 +65,11 @@ public class ClientsController {
 
     @RequestMapping(value = URL_PART_CLIENT, method = RequestMethod.POST)
     public @ResponseBody String findPartOfClients(@RequestParam("action") String action) {
-        List<ClientDTO> clients = clientCache.getClientsPage(action);
+        if      (action.equals("PREV") && page > 0) page--;
+        else if (action.equals("NEXT"))             page++;
+        else if (action.equals("UPLOAD"))           page = 0;
+
+        List<ClientDTO> clients = clientCache.getClientsPage(page);
         JSONArray body = new JSONArray();
         for (ClientDTO c : clients) {
             JSONObject item = new JSONObject();
