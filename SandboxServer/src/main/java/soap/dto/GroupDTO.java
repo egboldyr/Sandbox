@@ -3,6 +3,7 @@ package soap.dto;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 
 /**
  * Created by EGBoldyr on 17.04.18.
@@ -10,7 +11,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "group")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class GroupDTO {
+public class GroupDTO implements Serializable {
+
+    private static final long serialVersionUID = -6818848055255145394L;
 
     private Long id;
 
