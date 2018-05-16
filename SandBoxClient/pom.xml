@@ -92,6 +92,12 @@
             <optional>true</optional>
         </dependency>
 
+        <dependency>
+            <groupId>Sandbox</groupId>
+            <artifactId>SandBoxAdminApi</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
     </dependencies>
 
     <build>
